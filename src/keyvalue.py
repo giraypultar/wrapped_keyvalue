@@ -60,7 +60,7 @@ class key_value(Module):
         ]
 
         fsm.act("INACTIVE",
-            STALL_o.eq(1),
+            NextValue(STALL_o,1),
             NextValue(ACK_o,0),
             If((STB_i == 1) ,
                 NextState("READING")

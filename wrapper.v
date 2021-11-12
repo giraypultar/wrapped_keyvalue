@@ -117,7 +117,7 @@ module wrapped_keyvalue(
 		       .ADR_i     (wbs_adr_i[16]),
 		       .ACK_o     (buf_wbs_ack_o),
 		       .DAT_o     (buf_wbs_dat_o),
-		       .LA_o      (la1_data_out),
+		       .LA_o      (buf_la1_data_out),
 		       .BUF_o     (buf_io_out)
 		       );
    

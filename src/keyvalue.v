@@ -36,14 +36,14 @@ reg [15:0] storav7 = 16'd0;
 reg [15:0] empty_location = 16'd1;
 reg [1:0] state = 2'd3;
 reg [1:0] next_state;
-reg ACK_o_next_value0;
-reg ACK_o_next_value_ce0;
-reg [15:0] empty_location_next_value1;
-reg empty_location_next_value_ce1;
-reg [15:0] DAT_o_next_value2;
-reg DAT_o_next_value_ce2;
-reg STALL_o_next_value3;
-reg STALL_o_next_value_ce3;
+reg STALL_o_next_value0;
+reg STALL_o_next_value_ce0;
+reg ACK_o_next_value1;
+reg ACK_o_next_value_ce1;
+reg [15:0] empty_location_next_value2;
+reg empty_location_next_value_ce2;
+reg [15:0] DAT_o_next_value3;
+reg DAT_o_next_value_ce3;
 reg [15:0] t_next_value0;
 reg t_next_value_ce0;
 reg [15:0] t_next_value1;
@@ -70,16 +70,15 @@ assign BUF_o = ADR_i;
 reg dummy_d;
 // synthesis translate_on
 always @(*) begin
-	STALL_o <= 1'd0;
 	next_state <= 2'd0;
-	ACK_o_next_value0 <= 1'd0;
-	ACK_o_next_value_ce0 <= 1'd0;
-	empty_location_next_value1 <= 16'd0;
-	empty_location_next_value_ce1 <= 1'd0;
-	DAT_o_next_value2 <= 16'd0;
-	DAT_o_next_value_ce2 <= 1'd0;
-	STALL_o_next_value3 <= 1'd0;
-	STALL_o_next_value_ce3 <= 1'd0;
+	STALL_o_next_value0 <= 1'd0;
+	STALL_o_next_value_ce0 <= 1'd0;
+	ACK_o_next_value1 <= 1'd0;
+	ACK_o_next_value_ce1 <= 1'd0;
+	empty_location_next_value2 <= 16'd0;
+	empty_location_next_value_ce2 <= 1'd0;
+	DAT_o_next_value3 <= 16'd0;
+	DAT_o_next_value_ce3 <= 1'd0;
 	t_next_value0 <= 16'd0;
 	t_next_value_ce0 <= 1'd0;
 	t_next_value1 <= 16'd0;
@@ -91,31 +90,32 @@ always @(*) begin
 	next_state <= state;
 	case (state)
 		1'd0: begin
-			STALL_o <= 1'd1;
-			ACK_o_next_value0 <= 1'd0;
-			ACK_o_next_value_ce0 <= 1'd1;
+			STALL_o_next_value0 <= 1'd1;
+			STALL_o_next_value_ce0 <= 1'd1;
+			ACK_o_next_value1 <= 1'd0;
+			ACK_o_next_value_ce1 <= 1'd1;
 			if ((STB_i == 1'd1)) begin
 				next_state <= 1'd1;
 			end
 			if (((STB_i == 1'd1) & (WE_i == 1'd1))) begin
 				next_state <= 2'd2;
 				if ((ADR_i == 1'd0)) begin
-					empty_location_next_value1 <= (empty_location + 1'd1);
-					empty_location_next_value_ce1 <= 1'd1;
+					empty_location_next_value2 <= (empty_location + 1'd1);
+					empty_location_next_value_ce2 <= 1'd1;
 				end
 			end
 		end
 		1'd1: begin
-			DAT_o_next_value2 <= comb_array_muxed;
-			DAT_o_next_value_ce2 <= 1'd1;
-			STALL_o_next_value3 <= 1'd0;
-			STALL_o_next_value_ce3 <= 1'd1;
+			DAT_o_next_value3 <= comb_array_muxed;
+			DAT_o_next_value_ce3 <= 1'd1;
+			STALL_o_next_value0 <= 1'd0;
+			STALL_o_next_value_ce0 <= 1'd1;
 			if ((RESET_i == 1'd1)) begin
 				next_state <= 2'd3;
 			end
 			if ((CYC_i == 1'd0)) begin
-				ACK_o_next_value0 <= 1'd1;
-				ACK_o_next_value_ce0 <= 1'd1;
+				ACK_o_next_value1 <= 1'd1;
+				ACK_o_next_value_ce1 <= 1'd1;
 				next_state <= 1'd0;
 			end
 		end
@@ -125,20 +125,20 @@ always @(*) begin
 				t_next_value_ce0 <= 1'd1;
 				t_next_value1 <= KEY_i;
 				t_next_value_ce1 <= 1'd1;
-				empty_location_next_value1 <= (empty_location + 1'd1);
-				empty_location_next_value_ce1 <= 1'd1;
-				DAT_o_next_value2 <= empty_location;
-				DAT_o_next_value_ce2 <= 1'd1;
+				empty_location_next_value2 <= (empty_location + 1'd1);
+				empty_location_next_value_ce2 <= 1'd1;
+				DAT_o_next_value3 <= empty_location;
+				DAT_o_next_value_ce3 <= 1'd1;
 			end else begin
 				f_next_value0 <= DAT_i;
 				f_next_value_ce0 <= 1'd1;
 				f_next_value1 <= KEY_i;
 				f_next_value_ce1 <= 1'd1;
-				DAT_o_next_value2 <= ADR_i;
-				DAT_o_next_value_ce2 <= 1'd1;
+				DAT_o_next_value3 <= ADR_i;
+				DAT_o_next_value_ce3 <= 1'd1;
 			end
-			ACK_o_next_value0 <= 1'd1;
-			ACK_o_next_value_ce0 <= 1'd1;
+			ACK_o_next_value1 <= 1'd1;
+			ACK_o_next_value_ce1 <= 1'd1;
 			next_state <= 1'd0;
 			if ((RESET_i == 1'd1)) begin
 				next_state <= 2'd3;
@@ -193,17 +193,17 @@ end
 
 always @(posedge sys_clk) begin
 	state <= next_state;
-	if (ACK_o_next_value_ce0) begin
-		ACK_o <= ACK_o_next_value0;
+	if (STALL_o_next_value_ce0) begin
+		STALL_o <= STALL_o_next_value0;
 	end
-	if (empty_location_next_value_ce1) begin
-		empty_location <= empty_location_next_value1;
+	if (ACK_o_next_value_ce1) begin
+		ACK_o <= ACK_o_next_value1;
 	end
-	if (DAT_o_next_value_ce2) begin
-		DAT_o <= DAT_o_next_value2;
+	if (empty_location_next_value_ce2) begin
+		empty_location <= empty_location_next_value2;
 	end
-	if (STALL_o_next_value_ce3) begin
-		STALL_o <= STALL_o_next_value3;
+	if (DAT_o_next_value_ce3) begin
+		DAT_o <= DAT_o_next_value3;
 	end
 	if (t_next_value_ce0) begin
 		sync_array_muxed0 = t_next_value0;
