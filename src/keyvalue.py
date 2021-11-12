@@ -7,7 +7,7 @@ import random
 WIDTH = 16 # How many bits can be in key and value
 DEPTH = 16 # How many bits for the storage location
 MAX_CAPACITY = 2**DEPTH # Capacity of key_value store
-CAPACITY = 4
+CAPACITY = 8
 
 class key_value(Module):
     def __init__(self, width, depth):
@@ -26,7 +26,9 @@ class key_value(Module):
         self.STALL_o = STALL_o = Signal() # false when the transaction happens
         self.ACK_o = ACK_o = Signal() #active for indicating the end of the transaction
         self.DAT_o = DAT_o = Signal(width)
-
+        self.BUF_o = Signal(width)
+        self.LA_o = Signal(width)
+        
         #imported_modules
         fsm = FSM(reset_state="RESET")
         self.submodules += fsm
@@ -38,7 +40,7 @@ class key_value(Module):
         self.storav = Array(Signal(width) for i in range(CAPACITY))
             
         self.ios = { KEY_i, VALUE_i_o, RESET_i, ADR_i, DAT_i, WE_i, STB_i, CYC_i,
-                     STALL_o, ACK_o, DAT_o } 
+                     STALL_o, ACK_o, DAT_o, self.BUF_o, self.LA_o } 
         ###
 
         #internal signals
@@ -49,6 +51,8 @@ class key_value(Module):
         ###
 
         self.comb += [
+            self.LA_o.eq(DAT_o),
+            self.BUF_o.eq(ADR_i),
             # write_port.adr.eq(ADR_i),
             # read_port.adr.eq(ADR_i),
             # write_port.dat_w.eq(DAT_i),

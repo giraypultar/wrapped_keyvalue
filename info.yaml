@@ -3,11 +3,10 @@ project:
   description: "key value store"
   picture: docs/keyvalue.png
   author: "Giray Pultar"
-  github: https://github.com/giraypultar/keyvalue
   license: Apache-2.0
 
 # interfaces
-interfaces: ['wishbone', 'gpio']
+interfaces: ['wishbone', 'gpio', 'la1']
 
 # test within caravel
 caravel_test:
@@ -37,7 +36,7 @@ source:
     - wrapper.v
     - src/keyvalue.v
 
-# gds - check size = 300x300, nothing on metal 5, do a DRC, check 141 tristate buffers, check LVS
+# gds - check nothin on metal 5, DRC & LVS
 gds:
   directory: "gds"
   gds_filename: "wrapped_keyvalue.gds"

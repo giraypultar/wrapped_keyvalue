@@ -11,6 +11,8 @@ module keyvalue(
 	output reg STALL_o,
 	output reg ACK_o,
 	output reg [15:0] DAT_o,
+	output [15:0] BUF_o,
+	output [15:0] LA_o,
 	input sys_clk,
 	input sys_rst
 );
@@ -19,10 +21,18 @@ reg [15:0] storak0 = 16'd0;
 reg [15:0] storak1 = 16'd0;
 reg [15:0] storak2 = 16'd0;
 reg [15:0] storak3 = 16'd0;
+reg [15:0] storak4 = 16'd0;
+reg [15:0] storak5 = 16'd0;
+reg [15:0] storak6 = 16'd0;
+reg [15:0] storak7 = 16'd0;
 reg [15:0] storav0 = 16'd0;
 reg [15:0] storav1 = 16'd0;
 reg [15:0] storav2 = 16'd0;
 reg [15:0] storav3 = 16'd0;
+reg [15:0] storav4 = 16'd0;
+reg [15:0] storav5 = 16'd0;
+reg [15:0] storav6 = 16'd0;
+reg [15:0] storav7 = 16'd0;
 reg [15:0] empty_location = 16'd1;
 reg [1:0] state = 2'd3;
 reg [1:0] next_state;
@@ -53,6 +63,8 @@ reg dummy_s;
 initial dummy_s <= 1'd0;
 // synthesis translate_on
 
+assign LA_o = DAT_o;
+assign BUF_o = ADR_i;
 
 // synthesis translate_off
 reg dummy_d;
@@ -158,8 +170,20 @@ always @(*) begin
 		2'd2: begin
 			comb_array_muxed <= storav2;
 		end
-		default: begin
+		2'd3: begin
 			comb_array_muxed <= storav3;
+		end
+		3'd4: begin
+			comb_array_muxed <= storav4;
+		end
+		3'd5: begin
+			comb_array_muxed <= storav5;
+		end
+		3'd6: begin
+			comb_array_muxed <= storav6;
+		end
+		default: begin
+			comb_array_muxed <= storav7;
 		end
 	endcase
 // synthesis translate_off
@@ -193,8 +217,20 @@ always @(posedge sys_clk) begin
 			2'd2: begin
 				storav2 <= sync_array_muxed0;
 			end
-			default: begin
+			2'd3: begin
 				storav3 <= sync_array_muxed0;
+			end
+			3'd4: begin
+				storav4 <= sync_array_muxed0;
+			end
+			3'd5: begin
+				storav5 <= sync_array_muxed0;
+			end
+			3'd6: begin
+				storav6 <= sync_array_muxed0;
+			end
+			default: begin
+				storav7 <= sync_array_muxed0;
 			end
 		endcase
 	end
@@ -210,8 +246,20 @@ always @(posedge sys_clk) begin
 			2'd2: begin
 				storak2 <= sync_array_muxed1;
 			end
-			default: begin
+			2'd3: begin
 				storak3 <= sync_array_muxed1;
+			end
+			3'd4: begin
+				storak4 <= sync_array_muxed1;
+			end
+			3'd5: begin
+				storak5 <= sync_array_muxed1;
+			end
+			3'd6: begin
+				storak6 <= sync_array_muxed1;
+			end
+			default: begin
+				storak7 <= sync_array_muxed1;
 			end
 		endcase
 	end
@@ -227,8 +275,20 @@ always @(posedge sys_clk) begin
 			2'd2: begin
 				storav2 <= sync_array_muxed2;
 			end
-			default: begin
+			2'd3: begin
 				storav3 <= sync_array_muxed2;
+			end
+			3'd4: begin
+				storav4 <= sync_array_muxed2;
+			end
+			3'd5: begin
+				storav5 <= sync_array_muxed2;
+			end
+			3'd6: begin
+				storav6 <= sync_array_muxed2;
+			end
+			default: begin
+				storav7 <= sync_array_muxed2;
 			end
 		endcase
 	end
@@ -244,8 +304,20 @@ always @(posedge sys_clk) begin
 			2'd2: begin
 				storak2 <= sync_array_muxed3;
 			end
-			default: begin
+			2'd3: begin
 				storak3 <= sync_array_muxed3;
+			end
+			3'd4: begin
+				storak4 <= sync_array_muxed3;
+			end
+			3'd5: begin
+				storak5 <= sync_array_muxed3;
+			end
+			3'd6: begin
+				storak6 <= sync_array_muxed3;
+			end
+			default: begin
+				storak7 <= sync_array_muxed3;
 			end
 		endcase
 	end
@@ -257,10 +329,18 @@ always @(posedge sys_clk) begin
 		storak1 <= 16'd0;
 		storak2 <= 16'd0;
 		storak3 <= 16'd0;
+		storak4 <= 16'd0;
+		storak5 <= 16'd0;
+		storak6 <= 16'd0;
+		storak7 <= 16'd0;
 		storav0 <= 16'd0;
 		storav1 <= 16'd0;
 		storav2 <= 16'd0;
 		storav3 <= 16'd0;
+		storav4 <= 16'd0;
+		storav5 <= 16'd0;
+		storav6 <= 16'd0;
+		storav7 <= 16'd0;
 		empty_location <= 16'd1;
 		state <= 2'd3;
 	end
