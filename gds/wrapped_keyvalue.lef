@@ -927,774 +927,774 @@ MACRO wrapped_keyvalue
         RECT 296.000 165.960 300.000 166.560 ;
     END
   END io_out[9]
-  PIN la_data_in[0]
+  PIN la1_data_in[0]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met3 ;
         RECT 296.000 39.480 300.000 40.080 ;
     END
-  END la_data_in[0]
-  PIN la_data_in[10]
+  END la1_data_in[0]
+  PIN la1_data_in[10]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met2 ;
         RECT 104.050 296.000 104.330 300.000 ;
     END
-  END la_data_in[10]
-  PIN la_data_in[11]
+  END la1_data_in[10]
+  PIN la1_data_in[11]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met2 ;
         RECT 34.130 296.000 34.410 300.000 ;
     END
-  END la_data_in[11]
-  PIN la_data_in[12]
+  END la1_data_in[11]
+  PIN la1_data_in[12]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met2 ;
         RECT 50.690 296.000 50.970 300.000 ;
     END
-  END la_data_in[12]
-  PIN la_data_in[13]
+  END la1_data_in[12]
+  PIN la1_data_in[13]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met3 ;
         RECT 0.000 229.880 4.000 230.480 ;
     END
-  END la_data_in[13]
-  PIN la_data_in[14]
+  END la1_data_in[13]
+  PIN la1_data_in[14]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met3 ;
         RECT 0.000 117.000 4.000 117.600 ;
     END
-  END la_data_in[14]
-  PIN la_data_in[15]
+  END la1_data_in[14]
+  PIN la1_data_in[15]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met3 ;
         RECT 0.000 78.920 4.000 79.520 ;
     END
-  END la_data_in[15]
-  PIN la_data_in[16]
+  END la1_data_in[15]
+  PIN la1_data_in[16]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met3 ;
         RECT 0.000 46.280 4.000 46.880 ;
     END
-  END la_data_in[16]
-  PIN la_data_in[17]
+  END la1_data_in[16]
+  PIN la1_data_in[17]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met2 ;
         RECT 278.850 0.000 279.130 4.000 ;
     END
-  END la_data_in[17]
-  PIN la_data_in[18]
+  END la1_data_in[17]
+  PIN la1_data_in[18]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met3 ;
         RECT 296.000 204.040 300.000 204.640 ;
     END
-  END la_data_in[18]
-  PIN la_data_in[19]
+  END la1_data_in[18]
+  PIN la1_data_in[19]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met2 ;
         RECT 15.730 0.000 16.010 4.000 ;
     END
-  END la_data_in[19]
-  PIN la_data_in[1]
+  END la1_data_in[19]
+  PIN la1_data_in[1]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met3 ;
         RECT 0.000 224.440 4.000 225.040 ;
     END
-  END la_data_in[1]
-  PIN la_data_in[20]
+  END la1_data_in[1]
+  PIN la1_data_in[20]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met2 ;
         RECT 101.290 0.000 101.570 4.000 ;
     END
-  END la_data_in[20]
-  PIN la_data_in[21]
+  END la1_data_in[20]
+  PIN la1_data_in[21]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met2 ;
         RECT 285.290 296.000 285.570 300.000 ;
     END
-  END la_data_in[21]
-  PIN la_data_in[22]
+  END la1_data_in[21]
+  PIN la1_data_in[22]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met2 ;
         RECT 120.610 296.000 120.890 300.000 ;
     END
-  END la_data_in[22]
-  PIN la_data_in[23]
+  END la1_data_in[22]
+  PIN la1_data_in[23]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met2 ;
         RECT 231.010 0.000 231.290 4.000 ;
     END
-  END la_data_in[23]
-  PIN la_data_in[24]
+  END la1_data_in[23]
+  PIN la1_data_in[24]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met2 ;
         RECT 94.850 296.000 95.130 300.000 ;
     END
-  END la_data_in[24]
-  PIN la_data_in[25]
+  END la1_data_in[24]
+  PIN la1_data_in[25]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met3 ;
         RECT 0.000 32.680 4.000 33.280 ;
     END
-  END la_data_in[25]
-  PIN la_data_in[26]
+  END la1_data_in[25]
+  PIN la1_data_in[26]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met3 ;
         RECT 296.000 85.720 300.000 86.320 ;
     END
-  END la_data_in[26]
-  PIN la_data_in[27]
+  END la1_data_in[26]
+  PIN la1_data_in[27]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met3 ;
         RECT 0.000 266.600 4.000 267.200 ;
     END
-  END la_data_in[27]
-  PIN la_data_in[28]
+  END la1_data_in[27]
+  PIN la1_data_in[28]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met3 ;
         RECT 296.000 282.920 300.000 283.520 ;
     END
-  END la_data_in[28]
-  PIN la_data_in[29]
+  END la1_data_in[28]
+  PIN la1_data_in[29]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met2 ;
         RECT 2.850 296.000 3.130 300.000 ;
     END
-  END la_data_in[29]
-  PIN la_data_in[2]
+  END la1_data_in[29]
+  PIN la1_data_in[2]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met3 ;
         RECT 0.000 239.400 4.000 240.000 ;
     END
-  END la_data_in[2]
-  PIN la_data_in[30]
+  END la1_data_in[2]
+  PIN la1_data_in[30]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met2 ;
         RECT 206.170 0.000 206.450 4.000 ;
     END
-  END la_data_in[30]
-  PIN la_data_in[31]
+  END la1_data_in[30]
+  PIN la1_data_in[31]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met2 ;
         RECT 247.570 0.000 247.850 4.000 ;
     END
-  END la_data_in[31]
-  PIN la_data_in[3]
+  END la1_data_in[31]
+  PIN la1_data_in[3]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met3 ;
         RECT 296.000 142.840 300.000 143.440 ;
     END
-  END la_data_in[3]
-  PIN la_data_in[4]
+  END la1_data_in[3]
+  PIN la1_data_in[4]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met2 ;
         RECT 161.090 296.000 161.370 300.000 ;
     END
-  END la_data_in[4]
-  PIN la_data_in[5]
+  END la1_data_in[4]
+  PIN la1_data_in[5]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met2 ;
         RECT 288.970 0.000 289.250 4.000 ;
     END
-  END la_data_in[5]
-  PIN la_data_in[6]
+  END la1_data_in[5]
+  PIN la1_data_in[6]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met2 ;
         RECT 269.650 0.000 269.930 4.000 ;
     END
-  END la_data_in[6]
-  PIN la_data_in[7]
+  END la1_data_in[6]
+  PIN la1_data_in[7]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met2 ;
         RECT 164.770 296.000 165.050 300.000 ;
     END
-  END la_data_in[7]
-  PIN la_data_in[8]
+  END la1_data_in[7]
+  PIN la1_data_in[8]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met3 ;
         RECT 296.000 10.920 300.000 11.520 ;
     END
-  END la_data_in[8]
-  PIN la_data_in[9]
+  END la1_data_in[8]
+  PIN la1_data_in[9]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met3 ;
         RECT 0.000 50.360 4.000 50.960 ;
     END
-  END la_data_in[9]
-  PIN la_data_out[0]
+  END la1_data_in[9]
+  PIN la1_data_out[0]
     DIRECTION OUTPUT TRISTATE ;
     USE SIGNAL ;
     PORT
       LAYER met3 ;
         RECT 296.000 16.360 300.000 16.960 ;
     END
-  END la_data_out[0]
-  PIN la_data_out[10]
+  END la1_data_out[0]
+  PIN la1_data_out[10]
     DIRECTION OUTPUT TRISTATE ;
     USE SIGNAL ;
     PORT
       LAYER met3 ;
         RECT 0.000 262.520 4.000 263.120 ;
     END
-  END la_data_out[10]
-  PIN la_data_out[11]
+  END la1_data_out[10]
+  PIN la1_data_out[11]
     DIRECTION OUTPUT TRISTATE ;
     USE SIGNAL ;
     PORT
       LAYER met2 ;
         RECT 37.810 296.000 38.090 300.000 ;
     END
-  END la_data_out[11]
-  PIN la_data_out[12]
+  END la1_data_out[11]
+  PIN la1_data_out[12]
     DIRECTION OUTPUT TRISTATE ;
     USE SIGNAL ;
     PORT
       LAYER met3 ;
         RECT 0.000 111.560 4.000 112.160 ;
     END
-  END la_data_out[12]
-  PIN la_data_out[13]
+  END la1_data_out[12]
+  PIN la1_data_out[13]
     DIRECTION OUTPUT TRISTATE ;
     USE SIGNAL ;
     PORT
       LAYER met2 ;
         RECT 44.250 0.000 44.530 4.000 ;
     END
-  END la_data_out[13]
-  PIN la_data_out[14]
+  END la1_data_out[13]
+  PIN la1_data_out[14]
     DIRECTION OUTPUT TRISTATE ;
     USE SIGNAL ;
     PORT
       LAYER met2 ;
         RECT 158.330 0.000 158.610 4.000 ;
     END
-  END la_data_out[14]
-  PIN la_data_out[15]
+  END la1_data_out[14]
+  PIN la1_data_out[15]
     DIRECTION OUTPUT TRISTATE ;
     USE SIGNAL ;
     PORT
       LAYER met2 ;
         RECT 247.570 296.000 247.850 300.000 ;
     END
-  END la_data_out[15]
-  PIN la_data_out[16]
+  END la1_data_out[15]
+  PIN la1_data_out[16]
     DIRECTION OUTPUT TRISTATE ;
     USE SIGNAL ;
     PORT
       LAYER met2 ;
         RECT 126.130 296.000 126.410 300.000 ;
     END
-  END la_data_out[16]
-  PIN la_data_out[17]
+  END la1_data_out[16]
+  PIN la1_data_out[17]
     DIRECTION OUTPUT TRISTATE ;
     USE SIGNAL ;
     PORT
       LAYER met3 ;
         RECT 296.000 175.480 300.000 176.080 ;
     END
-  END la_data_out[17]
-  PIN la_data_out[18]
+  END la1_data_out[17]
+  PIN la1_data_out[18]
     DIRECTION OUTPUT TRISTATE ;
     USE SIGNAL ;
     PORT
       LAYER met3 ;
         RECT 0.000 69.400 4.000 70.000 ;
     END
-  END la_data_out[18]
-  PIN la_data_out[19]
+  END la1_data_out[18]
+  PIN la1_data_out[19]
     DIRECTION OUTPUT TRISTATE ;
     USE SIGNAL ;
     PORT
       LAYER met3 ;
         RECT 296.000 231.240 300.000 231.840 ;
     END
-  END la_data_out[19]
-  PIN la_data_out[1]
+  END la1_data_out[19]
+  PIN la1_data_out[1]
     DIRECTION OUTPUT TRISTATE ;
     USE SIGNAL ;
     PORT
       LAYER met2 ;
         RECT 154.650 296.000 154.930 300.000 ;
     END
-  END la_data_out[1]
-  PIN la_data_out[20]
+  END la1_data_out[1]
+  PIN la1_data_out[20]
     DIRECTION OUTPUT TRISTATE ;
     USE SIGNAL ;
     PORT
       LAYER met3 ;
         RECT 0.000 93.880 4.000 94.480 ;
     END
-  END la_data_out[20]
-  PIN la_data_out[21]
+  END la1_data_out[20]
+  PIN la1_data_out[21]
     DIRECTION OUTPUT TRISTATE ;
     USE SIGNAL ;
     PORT
       LAYER met2 ;
         RECT 44.250 296.000 44.530 300.000 ;
     END
-  END la_data_out[21]
-  PIN la_data_out[22]
+  END la1_data_out[21]
+  PIN la1_data_out[22]
     DIRECTION OUTPUT TRISTATE ;
     USE SIGNAL ;
     PORT
       LAYER met2 ;
         RECT 85.650 296.000 85.930 300.000 ;
     END
-  END la_data_out[22]
-  PIN la_data_out[23]
+  END la1_data_out[22]
+  PIN la1_data_out[23]
     DIRECTION OUTPUT TRISTATE ;
     USE SIGNAL ;
     PORT
       LAYER met3 ;
         RECT 0.000 276.120 4.000 276.720 ;
     END
-  END la_data_out[23]
-  PIN la_data_out[24]
+  END la1_data_out[23]
+  PIN la1_data_out[24]
     DIRECTION OUTPUT TRISTATE ;
     USE SIGNAL ;
     PORT
       LAYER met3 ;
         RECT 0.000 220.360 4.000 220.960 ;
     END
-  END la_data_out[24]
-  PIN la_data_out[25]
+  END la1_data_out[24]
+  PIN la1_data_out[25]
     DIRECTION OUTPUT TRISTATE ;
     USE SIGNAL ;
     PORT
       LAYER met3 ;
         RECT 296.000 152.360 300.000 152.960 ;
     END
-  END la_data_out[25]
-  PIN la_data_out[26]
+  END la1_data_out[25]
+  PIN la1_data_out[26]
     DIRECTION OUTPUT TRISTATE ;
     USE SIGNAL ;
     PORT
       LAYER met3 ;
         RECT 296.000 171.400 300.000 172.000 ;
     END
-  END la_data_out[26]
-  PIN la_data_out[27]
+  END la1_data_out[26]
+  PIN la1_data_out[27]
     DIRECTION OUTPUT TRISTATE ;
     USE SIGNAL ;
     PORT
       LAYER met3 ;
         RECT 0.000 272.040 4.000 272.640 ;
     END
-  END la_data_out[27]
-  PIN la_data_out[28]
+  END la1_data_out[27]
+  PIN la1_data_out[28]
     DIRECTION OUTPUT TRISTATE ;
     USE SIGNAL ;
     PORT
       LAYER met2 ;
         RECT 269.650 296.000 269.930 300.000 ;
     END
-  END la_data_out[28]
-  PIN la_data_out[29]
+  END la1_data_out[28]
+  PIN la1_data_out[29]
     DIRECTION OUTPUT TRISTATE ;
     USE SIGNAL ;
     PORT
       LAYER met3 ;
         RECT 296.000 114.280 300.000 114.880 ;
     END
-  END la_data_out[29]
-  PIN la_data_out[2]
+  END la1_data_out[29]
+  PIN la1_data_out[2]
     DIRECTION OUTPUT TRISTATE ;
     USE SIGNAL ;
     PORT
       LAYER met2 ;
         RECT 104.050 0.000 104.330 4.000 ;
     END
-  END la_data_out[2]
-  PIN la_data_out[30]
+  END la1_data_out[2]
+  PIN la1_data_out[30]
     DIRECTION OUTPUT TRISTATE ;
     USE SIGNAL ;
     PORT
       LAYER met2 ;
         RECT 18.490 296.000 18.770 300.000 ;
     END
-  END la_data_out[30]
-  PIN la_data_out[31]
+  END la1_data_out[30]
+  PIN la1_data_out[31]
     DIRECTION OUTPUT TRISTATE ;
     USE SIGNAL ;
     PORT
       LAYER met2 ;
         RECT 234.690 296.000 234.970 300.000 ;
     END
-  END la_data_out[31]
-  PIN la_data_out[3]
+  END la1_data_out[31]
+  PIN la1_data_out[3]
     DIRECTION OUTPUT TRISTATE ;
     USE SIGNAL ;
     PORT
       LAYER met3 ;
         RECT 0.000 130.600 4.000 131.200 ;
     END
-  END la_data_out[3]
-  PIN la_data_out[4]
+  END la1_data_out[3]
+  PIN la1_data_out[4]
     DIRECTION OUTPUT TRISTATE ;
     USE SIGNAL ;
     PORT
       LAYER met3 ;
         RECT 0.000 36.760 4.000 37.360 ;
     END
-  END la_data_out[4]
-  PIN la_data_out[5]
+  END la1_data_out[4]
+  PIN la1_data_out[5]
     DIRECTION OUTPUT TRISTATE ;
     USE SIGNAL ;
     PORT
       LAYER met2 ;
         RECT 107.730 0.000 108.010 4.000 ;
     END
-  END la_data_out[5]
-  PIN la_data_out[6]
+  END la1_data_out[5]
+  PIN la1_data_out[6]
     DIRECTION OUTPUT TRISTATE ;
     USE SIGNAL ;
     PORT
       LAYER met2 ;
         RECT 219.050 0.000 219.330 4.000 ;
     END
-  END la_data_out[6]
-  PIN la_data_out[7]
+  END la1_data_out[6]
+  PIN la1_data_out[7]
     DIRECTION OUTPUT TRISTATE ;
     USE SIGNAL ;
     PORT
       LAYER met3 ;
         RECT 296.000 194.520 300.000 195.120 ;
     END
-  END la_data_out[7]
-  PIN la_data_out[8]
+  END la1_data_out[7]
+  PIN la1_data_out[8]
     DIRECTION OUTPUT TRISTATE ;
     USE SIGNAL ;
     PORT
       LAYER met2 ;
         RECT 237.450 0.000 237.730 4.000 ;
     END
-  END la_data_out[8]
-  PIN la_data_out[9]
+  END la1_data_out[8]
+  PIN la1_data_out[9]
     DIRECTION OUTPUT TRISTATE ;
     USE SIGNAL ;
     PORT
       LAYER met3 ;
         RECT 0.000 140.120 4.000 140.720 ;
     END
-  END la_data_out[9]
-  PIN la_oen[0]
+  END la1_data_out[9]
+  PIN la1_oenb[0]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met2 ;
         RECT 5.610 0.000 5.890 4.000 ;
     END
-  END la_oen[0]
-  PIN la_oen[10]
+  END la1_oenb[0]
+  PIN la1_oenb[10]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met2 ;
         RECT 40.570 0.000 40.850 4.000 ;
     END
-  END la_oen[10]
-  PIN la_oen[11]
+  END la1_oenb[10]
+  PIN la1_oenb[11]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met3 ;
         RECT 0.000 55.800 4.000 56.400 ;
     END
-  END la_oen[11]
-  PIN la_oen[12]
+  END la1_oenb[11]
+  PIN la1_oenb[12]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met2 ;
         RECT 184.090 296.000 184.370 300.000 ;
     END
-  END la_oen[12]
-  PIN la_oen[13]
+  END la1_oenb[12]
+  PIN la1_oenb[13]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met2 ;
         RECT 171.210 0.000 171.490 4.000 ;
     END
-  END la_oen[13]
-  PIN la_oen[14]
+  END la1_oenb[13]
+  PIN la1_oenb[14]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met2 ;
         RECT 81.970 0.000 82.250 4.000 ;
     END
-  END la_oen[14]
-  PIN la_oen[15]
+  END la1_oenb[14]
+  PIN la1_oenb[15]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met2 ;
         RECT 162.010 0.000 162.290 4.000 ;
     END
-  END la_oen[15]
-  PIN la_oen[16]
+  END la1_oenb[15]
+  PIN la1_oenb[16]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met3 ;
         RECT 296.000 29.960 300.000 30.560 ;
     END
-  END la_oen[16]
-  PIN la_oen[17]
+  END la1_oenb[16]
+  PIN la1_oenb[17]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met3 ;
         RECT 0.000 299.240 4.000 299.840 ;
     END
-  END la_oen[17]
-  PIN la_oen[18]
+  END la1_oenb[17]
+  PIN la1_oenb[18]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met2 ;
         RECT 167.530 0.000 167.810 4.000 ;
     END
-  END la_oen[18]
-  PIN la_oen[19]
+  END la1_oenb[18]
+  PIN la1_oenb[19]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met2 ;
         RECT 221.810 296.000 222.090 300.000 ;
     END
-  END la_oen[19]
-  PIN la_oen[1]
+  END la1_oenb[19]
+  PIN la1_oenb[1]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met2 ;
         RECT 215.370 0.000 215.650 4.000 ;
     END
-  END la_oen[1]
-  PIN la_oen[20]
+  END la1_oenb[1]
+  PIN la1_oenb[20]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met3 ;
         RECT 296.000 81.640 300.000 82.240 ;
     END
-  END la_oen[20]
-  PIN la_oen[21]
+  END la1_oenb[20]
+  PIN la1_oenb[21]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met2 ;
         RECT 298.170 296.000 298.450 300.000 ;
     END
-  END la_oen[21]
-  PIN la_oen[22]
+  END la1_oenb[21]
+  PIN la1_oenb[22]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met3 ;
         RECT 296.000 43.560 300.000 44.160 ;
     END
-  END la_oen[22]
-  PIN la_oen[23]
+  END la1_oenb[22]
+  PIN la1_oenb[23]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met3 ;
         RECT 0.000 214.920 4.000 215.520 ;
     END
-  END la_oen[23]
-  PIN la_oen[24]
+  END la1_oenb[23]
+  PIN la1_oenb[24]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met3 ;
         RECT 296.000 240.760 300.000 241.360 ;
     END
-  END la_oen[24]
-  PIN la_oen[25]
+  END la1_oenb[24]
+  PIN la1_oenb[25]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met2 ;
         RECT 241.130 0.000 241.410 4.000 ;
     END
-  END la_oen[25]
-  PIN la_oen[26]
+  END la1_oenb[25]
+  PIN la1_oenb[26]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met2 ;
         RECT 272.410 296.000 272.690 300.000 ;
     END
-  END la_oen[26]
-  PIN la_oen[27]
+  END la1_oenb[26]
+  PIN la1_oenb[27]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met2 ;
         RECT 202.490 0.000 202.770 4.000 ;
     END
-  END la_oen[27]
-  PIN la_oen[28]
+  END la1_oenb[27]
+  PIN la1_oenb[28]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met2 ;
         RECT 193.290 296.000 193.570 300.000 ;
     END
-  END la_oen[28]
-  PIN la_oen[29]
+  END la1_oenb[28]
+  PIN la1_oenb[29]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met2 ;
         RECT 28.610 0.000 28.890 4.000 ;
     END
-  END la_oen[29]
-  PIN la_oen[2]
+  END la1_oenb[29]
+  PIN la1_oenb[2]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met2 ;
         RECT 9.290 296.000 9.570 300.000 ;
     END
-  END la_oen[2]
-  PIN la_oen[30]
+  END la1_oenb[2]
+  PIN la1_oenb[30]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met2 ;
         RECT 123.370 0.000 123.650 4.000 ;
     END
-  END la_oen[30]
-  PIN la_oen[31]
+  END la1_oenb[30]
+  PIN la1_oenb[31]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met2 ;
         RECT 59.890 296.000 60.170 300.000 ;
     END
-  END la_oen[31]
-  PIN la_oen[3]
+  END la1_oenb[31]
+  PIN la1_oenb[3]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met2 ;
         RECT 57.130 0.000 57.410 4.000 ;
     END
-  END la_oen[3]
-  PIN la_oen[4]
+  END la1_oenb[3]
+  PIN la1_oenb[4]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met2 ;
         RECT 212.610 0.000 212.890 4.000 ;
     END
-  END la_oen[4]
-  PIN la_oen[5]
+  END la1_oenb[4]
+  PIN la1_oenb[5]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met2 ;
         RECT 199.730 296.000 200.010 300.000 ;
     END
-  END la_oen[5]
-  PIN la_oen[6]
+  END la1_oenb[5]
+  PIN la1_oenb[6]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met3 ;
         RECT 296.000 265.240 300.000 265.840 ;
     END
-  END la_oen[6]
-  PIN la_oen[7]
+  END la1_oenb[6]
+  PIN la1_oenb[7]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met2 ;
         RECT 107.730 296.000 108.010 300.000 ;
     END
-  END la_oen[7]
-  PIN la_oen[8]
+  END la1_oenb[7]
+  PIN la1_oenb[8]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met2 ;
         RECT 62.650 296.000 62.930 300.000 ;
     END
-  END la_oen[8]
-  PIN la_oen[9]
+  END la1_oenb[8]
+  PIN la1_oenb[9]
     DIRECTION INPUT ;
     USE SIGNAL ;
     PORT
       LAYER met2 ;
         RECT 206.170 296.000 206.450 300.000 ;
     END
-  END la_oen[9]
+  END la1_oenb[9]
   PIN vccd1
     DIRECTION INPUT ;
     USE POWER ;
@@ -2569,9 +2569,9 @@ MACRO wrapped_keyvalue
   END wbs_we_i
   OBS
       LAYER li1 ;
-        RECT 5.520 10.795 296.555 288.405 ;
+        RECT 5.520 10.795 295.635 288.405 ;
       LAYER met1 ;
-        RECT 0.070 10.240 296.615 288.560 ;
+        RECT 0.070 6.160 295.695 288.560 ;
       LAYER met2 ;
         RECT 0.100 295.720 2.570 298.365 ;
         RECT 3.410 295.720 5.330 298.365 ;
