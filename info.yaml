@@ -1,25 +1,26 @@
---- 
-# information
 project: 
-  title: "title"
-  description: "description"
-  picture: docs/empty.png
-  author: "Author"
-  github: https://github.com/link
-  license: LICENSE
+  title: "keyvalue"
+  description: "key value store"
+  picture: docs/keyvalue.png
+  author: "Giray Pultar"
+  github: https://github.com/giraypultar/keyvalue
+  license: Apache-2.0
+
+# interfaces
+interfaces: ['wishbone', 'gpio']
 
 # test within caravel
 caravel_test:
   recipe: "coco_test"
   directory: "caravel_test"
-  id: 1
-  module_name: "wrapped_project"
-  instance_name: "wrapped_project"
+  id: 12
+  module_name: "keyvalue"
+  instance_name: "keyvalue"
 
 # module test
 module_test:
   recipe: "all" 
-  directory: "project directory"
+  directory: "./"
   makefile: "Makefile"
 
 # run the wrapper formal proof
@@ -34,11 +35,11 @@ openlane:
 # source required for various configs and module instantiation
 source:
     - wrapper.v
-    - other source files here
+    - src/keyvalue.v
 
 # gds - check size = 300x300, nothing on metal 5, do a DRC, check 141 tristate buffers, check LVS
 gds:
   directory: "gds"
-  gds_filename: "project.gds"
-  lvs_filename: "project.lvs.powered.v"
-  lef_filename: "project.lef"
+  gds_filename: "wrapped_keyvalue.gds"
+  lvs_filename: "wrapped_keyvalue.lvs.powered.v"
+  lef_filename: "wrapped_keyvalue.lef"
