@@ -18,8 +18,8 @@ caravel_test:
 
 # module test
 module_test:
-  recipe: "all" 
-  directory: "./"
+  recipe: "test" 
+  directory: "src/"
   makefile: "Makefile"
 
 # run the wrapper formal proof

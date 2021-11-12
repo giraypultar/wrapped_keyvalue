@@ -5,3 +5,6 @@ keyvalue.v: keyvalue.py
 
 clean:
 	rm keyvalue.v
+
+test:
+	echo "no test yet"
