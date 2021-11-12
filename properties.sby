@@ -6,9 +6,9 @@ smtbmc
 
 [script]
 read -formal wrapper.v keyvalue.v
-prep -top wrapper
+prep -top wrapped_keyvalue
 
 [files]
 wrapper.v
 properties.v
-keyvalue/src/keyvalue.v
+src/keyvalue.v
