@@ -101,10 +101,9 @@ module wrapped_keyvalue(
     `endif
     `endif
 
-    // permanently set oeb so that outputs are always enabled: 0 is output, 1 is high-impedance
-    assign buf_io_oeb[31:24] = {`MPRJ_IO_PADS{1'b0}}; // out
-   assign buf_io_oeb[23:0] = {`MPRJ_IO_PADS{1'b1}}; // in
    
+    // permanently set oeb so that outputs are always enabled: 0 is output, 1 is high-impedance
+    assign buf_io_oeb = {`MPRJ_IO_PADS{1'b0}};
 
     // Use the buffered outputs for your module's outputs.
     keyvalue_1 keyvalue1(
@@ -125,16 +124,14 @@ module wrapped_keyvalue(
 
        // Use the buffered outputs for your module's outputs.
     keyvalue_2 keyvalue2(
-		       .sys_clk   (buf_io_in[0]),
-		       .sys_rst   (buf_io_in[1]),
-		       .STB_i     (buf_io_in[2]),
-		       .CYC_i     (buf_io_in[3]),
-		       .WE_i      (buf_io_in[4]),
-		       .SEL_i     (buf_io_in[5]),
-		       .DAT_i     (buf_io_in[15:8]),
-		       .ADR_i     (buf_io_in[23:16]),
-		       .DAT_o     (buf_io_out[31:24]),
-		       .ACK_o     (buf_io_out[32]),
+		       .ACK_o     (buf_io_out[8]),
+		       .sys_clk   (io_in[9]),
+		       .sys_rst   (wb_rst_i),
+		       .STB_i     (io_in[10]),
+		       .WE_i      (io_in[11]),
+		       .DAT_i     (io_in[19:12]),
+		       .ADR_i     (io_in[27:20]),
+		       .DAT_o     (buf_io_out[35:28]),
 // not connected		       .LA_o      (buf_la1_data_out),
 		       );
    
