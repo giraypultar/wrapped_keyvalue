@@ -2,7 +2,6 @@
 module keyvalue_1(
 	input [15:0] KEY_i,
 	input [15:0] VALUE_i_o,
-	input RESET_i,
 	input [3:0] SEL_i,
 	input [15:0] ADR_i,
 	input [15:0] DAT_i,
@@ -442,7 +441,7 @@ always @(*) begin
 				ACK_o_f_next_value_ce <= 1'd1;
 				next_state <= 1'd0;
 			end
-			if ((RESET_i == 1'd1)) begin
+			if ((sys_rst == 1'd1)) begin
 				next_state <= 2'd3;
 			end
 		end
@@ -465,7 +464,7 @@ always @(*) begin
 			ACK_o_f_next_value <= 1'd1;
 			ACK_o_f_next_value_ce <= 1'd1;
 			next_state <= 1'd0;
-			if ((RESET_i == 1'd1)) begin
+			if ((sys_rst == 1'd1)) begin
 				next_state <= 2'd3;
 			end else begin
 				next_state <= 1'd0;

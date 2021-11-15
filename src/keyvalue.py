@@ -17,7 +17,7 @@ class key_value(Module):
         #inputs:
         self.KEY_i = KEY_i = Signal(width)
         self.VALUE_i_o = VALUE_i_o = Signal(width)
-        self.RESET_i = RESET_i = Signal() #active for returing back to the retset state
+        self.RESET_i = RESET_i = ResetSignal() #active for returing back to the retset state
         self.SEL_i = SEL_i = Signal(4)
         self.ADR_i = ADR_i = Signal(depth)
         self.DAT_i = DAT_i = Signal(width)
@@ -25,6 +25,7 @@ class key_value(Module):
         self.STB_i = STB_i = Signal() #active to indicate bus transaction request
         self.CYC_i = CYC_i  = Signal() #wishbone transaction, true on (or before) the first i_wb_stb clock, stays true until the last o_wb_ack
 
+        
         #outputs
         self.STALL_o = STALL_o = Signal() # false when the transaction happens
         self.ACK_o = ACK_o = Signal() #active for indicating the end of the transaction
@@ -41,7 +42,7 @@ class key_value(Module):
         self.storak = Array(Signal(width) for i in range(capacity))
         self.storav = Array(Signal(width) for i in range(capacity))
             
-        self.ios = { KEY_i, VALUE_i_o, RESET_i, ADR_i, DAT_i, WE_i, STB_i, CYC_i,
+        self.ios = { KEY_i, VALUE_i_o,  ADR_i, DAT_i, WE_i, STB_i, CYC_i,
                      STALL_o, ACK_o, DAT_o, self.LA_o, SEL_i } 
         ###
 
