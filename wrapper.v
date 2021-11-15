@@ -102,23 +102,40 @@ module wrapped_keyvalue(
     `endif
 
     // permanently set oeb so that outputs are always enabled: 0 is output, 1 is high-impedance
-    assign buf_io_oeb = {`MPRJ_IO_PADS{1'b0}};
+    assign buf_io_oeb[31:24] = {`MPRJ_IO_PADS{1'b0}}; // out
+   assign buf_io_oeb[23:0] = {`MPRJ_IO_PADS{1'b1}}; // in
+   
 
-    // Instantiate your module here, 
-    // connecting what you need of the above signals. 
     // Use the buffered outputs for your module's outputs.
-    keyvalue keyvalue0(
+    keyvalue_1 keyvalue1(
 		       .sys_clk   (wb_clk_i),
 		       .sys_rst   (wb_rst_i),
 		       .STB_i     (wbs_stb_i),
 		       .CYC_i     (wbs_cyc_i),
 		       .WE_i      (wbs_we_i),
+		       .SEL_i     (wbs_sel_i),
 		       .DAT_i     (wbs_dat_i[16]),
 		       .ADR_i     (wbs_adr_i[16]),
-		       .ACK_o     (buf_wbs_ack_o),
 		       .DAT_o     (buf_wbs_dat_o),
-		       .LA_o      (buf_la1_data_out),
-		       .BUF_o     (buf_io_out)
+		       .ACK_o     (buf_wbs_ack_o),
+		       .LA_o      (buf_la1_data_out)
+		       );
+   
+
+
+       // Use the buffered outputs for your module's outputs.
+    keyvalue_2 keyvalue2(
+		       .sys_clk   (buf_io_in[0]),
+		       .sys_rst   (buf_io_in[1]),
+		       .STB_i     (buf_io_in[2]),
+		       .CYC_i     (buf_io_in[3]),
+		       .WE_i      (buf_io_in[4]),
+		       .SEL_i     (buf_io_in[5]),
+		       .DAT_i     (buf_io_in[15:8]),
+		       .ADR_i     (buf_io_in[23:16]),
+		       .DAT_o     (buf_io_out[31:24]),
+		       .ACK_o     (buf_io_out[32]),
+// not connected		       .LA_o      (buf_la1_data_out),
 		       );
    
 

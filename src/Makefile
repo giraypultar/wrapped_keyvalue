@@ -1,6 +1,7 @@
 
 keyvalue.v: keyvalue.py
-	./keyvalue.py > keyvalue.v
+	./keyvalue.py 16 16 32 1 keyvalue_1 > keyvalue_1.v
+	./keyvalue.py 8 8 12 1 keyvalue_2 > keyvalue_2.v
 
 
 clean:
