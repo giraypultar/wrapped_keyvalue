@@ -8,23 +8,26 @@ import sys
 WIDTH = 16 # How many bits can be in key and value
 DEPTH = 16 # How many bits for the storage location
 MAX_CAPACITY = 2**DEPTH # Capacity of key_value store
-CAPACITY = 40
+CAPACITY = 200
 VERILOG = 0
 
 class key_value(Module):
     def __init__(self, width, depth,capacity):
 
+        cd = ClockDomain('sys')
+        self.RESET_i = RESET_i = cd.rst
         #inputs:
-        self.KEY_i = KEY_i = Signal(width)
-        self.VALUE_i_o = VALUE_i_o = Signal(width)
-        self.RESET_i = RESET_i = ResetSignal() #active for returing back to the retset state
+        # self.KEY_i = KEY_i = Signal(width)
+        # self.VALUE_i_o = VALUE_i_o = Signal(width)
         self.SEL_i = SEL_i = Signal(4)
+        self.ADR_IS_KEY_i =  ADR_IS_KEY_i = Signal()
+        self.DAT_IS_KEY_i = DAT_IS_KEY_i = Signal()        
         self.ADR_i = ADR_i = Signal(depth)
         self.DAT_i = DAT_i = Signal(width)
         self.WE_i = WE_i = Signal() #write enable
         self.STB_i = STB_i = Signal() #active to indicate bus transaction request
         self.CYC_i = CYC_i  = Signal() #wishbone transaction, true on (or before) the first i_wb_stb clock, stays true until the last o_wb_ack
-
+        self.DUP_o =  DUP_o = Signal()
         
         #outputs
         self.STALL_o = STALL_o = Signal() # false when the transaction happens
@@ -42,8 +45,8 @@ class key_value(Module):
         self.storak = Array(Signal(width) for i in range(capacity))
         self.storav = Array(Signal(width) for i in range(capacity))
             
-        self.ios = { KEY_i, VALUE_i_o,  ADR_i, DAT_i, WE_i, STB_i, CYC_i,
-                     STALL_o, ACK_o, DAT_o, self.LA_o, SEL_i } 
+        self.ios = { ADR_i, DAT_i, WE_i, STB_i, CYC_i, # KEY_i VALUE_i_o,
+                     STALL_o, ACK_o, DAT_o, self.LA_o, SEL_i, RESET_i,  ADR_IS_KEY_i, DAT_IS_KEY_i, DUP_o } 
         ###
 
         #internal signals
@@ -78,8 +81,8 @@ class key_value(Module):
 
         for i in range(1,capacity):
                 fsm.act("READING",
-                        If(ADR_i==Constant(0,width),
-                           If(self.storak[i]==KEY_i,
+                        If(self.ADR_IS_KEY_i==1,
+                           If(self.storak[i]==ADR_i,
                               NextValue(DAT_o,self.storav[i]),
                               NextValue(ACK_o,1),
                               NextState("INACTIVE")
@@ -88,7 +91,7 @@ class key_value(Module):
                 )
 
         fsm.act("READING",
-                If((ADR_i!=Constant(0,width)),
+                If(self.ADR_IS_KEY_i==0,
                    NextValue(DAT_o,self.storav[ADR_i]),
                    NextValue(ACK_o,1),
                    NextState("INACTIVE"),
@@ -104,14 +107,18 @@ class key_value(Module):
         
         #adress = 00 , dat = 000 , key = 0000 , value = 00000
         fsm.act("WRITING",
-                If(ADR_i==Constant(0,width),
+                If(self.ADR_IS_KEY_i,
                    NextValue(self.storav[self.empty_location],DAT_i),
-                   NextValue(self.storak[self.empty_location],KEY_i),
+                   NextValue(self.storak[self.empty_location],ADR_i),
                    NextValue(self.DAT_o,self.empty_location),
                 ).Else(
-                    NextValue(self.storav[ADR_i],DAT_i),
-                    NextValue(self.storak[ADR_i],KEY_i),
-                    NextValue(self.DAT_o,ADR_i),
+                    If(self.DAT_IS_KEY_i,
+                       NextValue(self.storak[ADR_i],DAT_i),
+                       NextValue(self.DAT_o,ADR_i),
+                    ).Else(
+                        NextValue(self.storav[ADR_i],DAT_i),
+                        NextValue(self.DAT_o,ADR_i)
+                    ),
                 ),
                 NextValue(ACK_o,1),
                 NextState("INACTIVE"),
@@ -136,7 +143,8 @@ def tick():
 def store_key_value(dut,key,value):
     # do whatever is necessary to store key/value
     yield dut.DAT_i.eq(value)
-    yield dut.KEY_i.eq(key)
+    yield dut.ADR_i.eq(key)
+    yield dut.ADR_IS_KEY_i.eq(1)
     yield dut.ADR_i.eq(0)
     yield dut.CYC_i.eq(1)
     yield dut.WE_i.eq(1)
@@ -168,7 +176,8 @@ def store_key_value(dut,key,value):
 
     yield dut.WE_i.eq(0)
     yield dut.STB_i.eq(0)
-    yield dut.KEY_i.eq(0)
+    yield dut.ADR_i.eq(0)
+    yield dut.ADR_IS_KEY_i.eq(0)
     yield dut.DAT_i.eq(0)
     yield
     return stored_location
@@ -176,7 +185,8 @@ def store_key_value(dut,key,value):
 def recall_from_key(dut,key):
     yield dut.CYC_i.eq(1)
     yield dut.STB_i.eq(1)
-    yield dut.KEY_i.eq(key)
+    yield dut.ADR_i.eq(key)
+    yield dut.ADR_IS_KEY_i.eq(1)
     yield dut.ADR_i.eq(0)
     
     MAX_WAIT_CYCLES=50
@@ -195,7 +205,7 @@ def recall_from_key(dut,key):
 
     yield dut.STB_i.eq(0)
     yield dut.CYC_i.eq(0)
-    yield dut.KEY_i.eq(0)
+    yield dut.ADR_IS_KEY_i.eq(0)
     yield dut.ADR_i.eq(0)
     yield
 
@@ -205,7 +215,6 @@ def recall_from_location(dut,location):
     # do whatever is necessary to recall the value
     yield dut.CYC_i.eq(1)
     yield dut.STB_i.eq(1)
-    yield dut.KEY_i.eq(0)
     yield dut.ADR_i.eq(location)
     yield
 
@@ -223,19 +232,14 @@ def recall_from_location(dut,location):
 
     yield dut.STB_i.eq(0)
     yield dut.CYC_i.eq(0)
-    yield dut.KEY_i.eq(0)
     yield dut.ADR_i.eq(0)
     yield
     
     # finally return the data that we recalled
     return (yield dut.DAT_o)
 
-def reset(dut):
-    yield dut.RESET_i.eq(1)
-    yield
-    yield dut.RESET_i.eq(0)
+def dut_reset(dut):
     yield dut.DAT_i.eq(0)
-    yield dut.KEY_i.eq(0)
     yield dut.ADR_i.eq(0)
     yield dut.CYC_i.eq(0)
     yield dut.WE_i.eq(0)
@@ -255,7 +259,7 @@ def simulation_story(dut,capacity):
 
     # Tests for issue #115
 
-    yield from reset(dut)
+    yield from dut_reset(dut)
 
     key=1111
     value=11111

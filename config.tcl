@@ -6,17 +6,18 @@ set ::env(DESIGN_NAME) wrapped_keyvalue
 
 # add your source files here
 set ::env(VERILOG_FILES) "$::env(DESIGN_DIR)/wrapper.v \
-    [glob $::env(DESIGN_DIR)/src/*.v]"
+    $::env(DESIGN_DIR)/src/keyvalue_1.v \
+    $::env(DESIGN_DIR)/src/keyvalue_2.v "
 
 # target density, change this if you can't get your design to fit
-set ::env(PL_TARGET_DENSITY) 0.4
+set ::env(PL_TARGET_DENSITY) 0.6
 
 # don't put clock buffers on the outputs, need tristates to be the final cells
 set ::env(PL_RESIZER_BUFFER_OUTPUT_PORTS) 0
 
 
 # set absolute size of the die to 240x240
-set ::env(DIE_AREA) "0 0 240 240"
+set ::env(DIE_AREA) "0 0 300 300"
 
 set ::env(FP_SIZING) absolute
 
@@ -24,7 +25,7 @@ set ::env(FP_SIZING) absolute
 set ::env(SYNTH_DEFINES) "MPRJ_IO_PADS=38"
 
 # clock period is ns
-set ::env(CLOCK_PERIOD) "10"
+set ::env(CLOCK_PERIOD) "50"
 set ::env(CLOCK_PORT) "wb_clk_i"
 
 # macro needs to work inside Caravel, so can't be core and can't use metal 5
