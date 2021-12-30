@@ -5,6 +5,7 @@ mode prove
 smtbmc
 
 [script]
+
 read -formal wrapper.v keyvalue_1.v keyvalue_2.v
 prep -top wrapped_keyvalue
 

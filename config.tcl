@@ -14,8 +14,10 @@ set ::env(PL_TARGET_DENSITY) 0.4
 # don't put clock buffers on the outputs, need tristates to be the final cells
 set ::env(PL_RESIZER_BUFFER_OUTPUT_PORTS) 0
 
+
 # set absolute size of the die to 240x240
 set ::env(DIE_AREA) "0 0 240 240"
+
 set ::env(FP_SIZING) absolute
 
 # define number of IO pads
@@ -35,3 +37,7 @@ set ::env(GND_NETS) [list {vssd1}]
 
 # turn off CVC as we have multiple power domains
 set ::env(RUN_CVC) 0
+
+# make pins wider to solve routing issues
+set ::env(FP_IO_VTHICKNESS_MULT) 4
+set ::env(FP_IO_HTHICKNESS_MULT) 4

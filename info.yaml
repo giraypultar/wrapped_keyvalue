@@ -1,4 +1,4 @@
-project: 
+project:
   title: "keyvalue"
   description: "key value store"
   picture: docs/keyvalue.png
@@ -18,7 +18,7 @@ caravel_test:
 
 # module test
 module_test:
-  recipe: "test" 
+  recipe: "test"
   directory: "src/"
   makefile: "Makefile"
 
