@@ -79,7 +79,7 @@ module both(
        // Use the buffered outputs for your module's outputs.
     keyvalue_4 keyvalue4(
 		       .ACK_o     (io_out[8]),
-		       .sys_clk   (io_in[9]),
+		       .sys_clk   (io_in[35]),
 		       .sys_rst_1 (wb_rst_i),
 		       .STB_i     (io_in[10]),
 		       .WE_i      (io_in[11]),
@@ -88,7 +88,7 @@ module both(
 		       .DAT_i     (io_in[18:12]),
 		       .ADR_i     (io_in[26:20]),
 		       .DAT_o     (io_out[34:28]),
-			 .DUP_o     (io_out[35]),
+			 // .DUP_o     (io_out[35]),
 // not connected		       .LA_o      (buf_la1_data_out),
 		       );
    
