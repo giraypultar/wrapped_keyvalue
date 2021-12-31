@@ -23,17 +23,17 @@ module both(
     input wire wbs_cyc_i,           // wishbone cycle
     input wire wbs_we_i,            // wishbone write enable
     input wire [3:0] wbs_sel_i,     // wishbone write word select
-    input wire [127:0] wbs_dat_i,    // wishbone data in
-    input wire [127:0] wbs_adr_i,    // wishbone address
+    input wire [31:0] wbs_dat_i,    // wishbone data in
+    input wire [31:0] wbs_adr_i,    // wishbone address
     output wire wbs_ack_o,          // wishbone ack
-    output wire [127:0] wbs_dat_o,   // wishbone data out
+    output wire [31:0] wbs_dat_o,   // wishbone data out
 `endif
     // Logic Analyzer Signals
     // only provide first 32 bits to reduce wiring congestion
 `ifdef USE_LA
-    input  wire [127:0] la_data_in,  // from PicoRV32 to your project
-    output wire [127:0] la_data_out, // from your project to PicoRV32
-    input  wire [127:0] la_oenb,     // output enable bar (low for active)
+    input  wire [31:0] la1_data_in,  // from PicoRV32 to your project
+    output wire [31:0] la1_data_out, // from your project to PicoRV32
+    input  wire [31:0] la1_oenb,     // output enable bar (low for active)
 `endif
 
     // IOs
@@ -60,34 +60,35 @@ module both(
     // Use the buffered outputs for your module's outputs.
     keyvalue_3 keyvalue3(
 		       .sys_clk   (wb_clk_i),
-		       .sys_rst   (wb_rst_i),
+		       .sys_rst_1   (wb_rst_i),
 		       .STB_i     (wbs_stb_i),
 		       .CYC_i     (wbs_cyc_i),
 		       .WE_i      (wbs_we_i),
-		       .SEL_i     (wbs_sel_i),
+			 // .SEL_i     (wbs_sel_i),
+			 .ADR_IS_KEY_i (wbs_sel_i[0]),
+ 			 .DAT_IS_KEY_i (wbs_sel_i[1]),
 		       .DAT_i     (wbs_dat_i),
-		       .ADR_i     (wbs_adr_i[127:64]),
-		       .KEY_i     (wbs_adr_i[63:0]),
-		       .DAT_o     (wbs_dat_o),
-		       .ACK_o     (wbs_ack_o),
+		       .ADR_i     (wbs_adr_i),
+		       .DAT_o     (wbs_dat_o[15:0]),
+		       .DUP_o     (wbs_dat_o[16]),
 		       .LA_o      (la_data_out)
 		       );
    
 
-   assign io_oeb[8] = 1'b0;
-      assign io_oeb[31:28] = 1'b0;
-   
+
        // Use the buffered outputs for your module's outputs.
     keyvalue_4 keyvalue4(
 		       .ACK_o     (io_out[8]),
 		       .sys_clk   (io_in[9]),
-		       .sys_rst   (wb_rst_i),
+		       .sys_rst_1 (wb_rst_i),
 		       .STB_i     (io_in[10]),
 		       .WE_i      (io_in[11]),
-		       .DAT_i     (io_in[15:12]),
-			 .KEY_i     (io_in[19:16]),
-		       .ADR_i     (io_in[23:20]),
-		       .DAT_o     (io_out[31:28]),
+		       .ADR_IS_KEY_i (io_in[19]),
+ 		       .DAT_IS_KEY_i (io_in[27]),			 
+		       .DAT_i     (io_in[18:12]),
+		       .ADR_i     (io_in[26:20]),
+		       .DAT_o     (io_out[34:28]),
+			 .DUP_o     (io_out[35]),
 // not connected		       .LA_o      (buf_la1_data_out),
 		       );
    

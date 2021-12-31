@@ -8,7 +8,7 @@ import sys
 WIDTH = 16 # How many bits can be in key and value
 DEPTH = 16 # How many bits for the storage location
 MAX_CAPACITY = 2**DEPTH # Capacity of key_value store
-CAPACITY = 200
+CAPACITY = 20
 VERILOG = 0
 
 class key_value(Module):
@@ -21,7 +21,7 @@ class key_value(Module):
         # self.VALUE_i_o = VALUE_i_o = Signal(width)
         self.SEL_i = SEL_i = Signal(4)
         self.ADR_IS_KEY_i =  ADR_IS_KEY_i = Signal()
-        self.DAT_IS_KEY_i = DAT_IS_KEY_i = Signal()        
+        self.DAT_IS_KEY_i = DAT_IS_KEY_i = Signal()
         self.ADR_i = ADR_i = Signal(depth)
         self.DAT_i = DAT_i = Signal(width)
         self.WE_i = WE_i = Signal() #write enable
@@ -52,7 +52,7 @@ class key_value(Module):
         #internal signals
         # write_port = storage.get_port(write_capable = True)
         # read_port = storage.get_port(has_re=True)
-        self.empty_location = Signal(depth,reset=0)
+        self.empty_location = Signal(depth,reset=1)
         
         ###
 
@@ -70,7 +70,7 @@ class key_value(Module):
                 NextState("READING")
             ).Elif((STB_i == 1) & (WE_i == 1) & (ACK_o ==0),
                NextState("WRITING"),
-               If(ADR_i==Constant(0,width),
+               If(self.ADR_IS_KEY_i,
                    NextValue(self.empty_location, self.empty_location+1),
                 ),
             ).Else(
@@ -82,6 +82,9 @@ class key_value(Module):
         for i in range(1,capacity):
                 fsm.act("READING",
                         If(self.ADR_IS_KEY_i==1,
+                           NextValue(self.ADR_IS_KEY_i,0),
+                           NextValue(self.ADR_i,0),
+                           NextValue(self.DAT_i,0),
                            If(self.storak[i]==ADR_i,
                               NextValue(DAT_o,self.storav[i]),
                               NextValue(ACK_o,1),
@@ -89,12 +92,32 @@ class key_value(Module):
                             ),
                         )
                 )
+                fsm.act("READING",
+                        If(self.DAT_i>0,
+                           NextValue(self.ADR_IS_KEY_i,0),
+                           NextValue(self.ADR_i,0),
+                           NextValue(self.DAT_i,0),
+                           If(self.storav[i]==DAT_i,
+                              NextValue(DAT_o,self.storak[i]),
+                              NextValue(ACK_o,1),
+                              NextState("INACTIVE")
+                              ),
+                           ),
+                        )
 
         fsm.act("READING",
                 If(self.ADR_IS_KEY_i==0,
-                   NextValue(DAT_o,self.storav[ADR_i]),
-                   NextValue(ACK_o,1),
-                   NextState("INACTIVE"),
+                   If(self.ADR_i==0,
+                      If(self.DAT_i==0,
+                         NextValue(ACK_o,1),
+                         NextValue(DUP_o,1),
+                         NextValue(DAT_o,-1),
+                         ), 
+                    ).Else(
+                        NextValue(DAT_o,self.storav[ADR_i]),
+                        NextValue(ACK_o,1),
+                        NextState("INACTIVE"),
+                        ),
                 ),
                 # NextValue(STALL_o,0),
                 # NextValue(read_port.re,1),
@@ -145,7 +168,6 @@ def store_key_value(dut,key,value):
     yield dut.DAT_i.eq(value)
     yield dut.ADR_i.eq(key)
     yield dut.ADR_IS_KEY_i.eq(1)
-    yield dut.ADR_i.eq(0)
     yield dut.CYC_i.eq(1)
     yield dut.WE_i.eq(1)
     yield dut.STB_i.eq(1)
@@ -186,7 +208,37 @@ def recall_from_key(dut,key):
     yield dut.CYC_i.eq(1)
     yield dut.STB_i.eq(1)
     yield dut.ADR_i.eq(key)
+    yield dut.WE_i.eq(0)
     yield dut.ADR_IS_KEY_i.eq(1)
+    
+    MAX_WAIT_CYCLES=50
+    for i in range(MAX_WAIT_CYCLES):
+        if ((yield dut.ACK_o) ==1):
+            # ok, we got the data
+            break
+        else:
+            # otherwise, wait another clock cycle
+            yield from tick()
+
+    if i==(MAX_WAIT_CYCLES-1):
+        raise Exception("Timeout waiting to get data")
+
+    # finally return the data that we recalled
+
+    yield dut.STB_i.eq(0)
+    yield dut.CYC_i.eq(0)
+    yield dut.ADR_IS_KEY_i.eq(0)
+    yield dut.ADR_i.eq(0)
+    yield
+
+    return (yield dut.DAT_o)
+
+def recall_from_value(dut,value):
+    yield dut.CYC_i.eq(1)
+    yield dut.STB_i.eq(1)
+    yield dut.DAT_i.eq(value)
+    yield dut.ADR_IS_KEY_i.eq(0)
+    yield dut.WE_i.eq(0)
     yield dut.ADR_i.eq(0)
     
     MAX_WAIT_CYCLES=50
@@ -211,11 +263,13 @@ def recall_from_key(dut,key):
 
     return (yield dut.DAT_o)
 
+
 def recall_from_location(dut,location):
     # do whatever is necessary to recall the value
     yield dut.CYC_i.eq(1)
     yield dut.STB_i.eq(1)
     yield dut.ADR_i.eq(location)
+    yield dut.ADR_IS_KEY_i.eq(0)
     yield
 
     MAX_WAIT_CYCLES=50
@@ -347,7 +401,7 @@ def simulation_story(dut,capacity):
     for (check_key,check_location) in sorted(stored_locations.items()):
         check_value = stored_keys_values[check_key]
         got_value = (yield from recall_from_location(dut,check_location))
-        print(f"Checking locationrecall key {check_key:x} is it in location {check_location}, {check_value:x} versus {got_value:x}")
+        print(f"Checking locationrecall key {check_key:x} is it in location {check_location:x}, {check_value:x} versus {got_value:x}")
         # print instead of assert
         assert(check_value == (yield from recall_from_location(dut,check_location)))
 
@@ -364,6 +418,7 @@ def simulation_story(dut,capacity):
         random_value = random.getrandbits(WIDTH)
         random_loc  = yield from store_key_value(dut,key,random_value)
         stored_keys_values[key] = random_value
+        stored_locations[key] = random_loc
         print(f"Stored random key {key:x} location {random_loc:x} value {random_value:x}")
 
     # Now lets recall all the values by the location and see
@@ -372,7 +427,7 @@ def simulation_story(dut,capacity):
     for (check_key,check_location) in sorted(stored_locations.items()):
         check_value = stored_keys_values[check_key]
         got_value = (yield from recall_from_location(dut,check_location))
-        print(f"Checking locationrecall key {check_key:x} is it in location {check_location}, {check_value:x} versus {got_value:x}")
+        print(f"Checking locationrecall key {check_key:x} is it in location {check_location:x}, {check_value:x} versus {got_value:x}")
         # print instead of assert
         assert(check_value == (yield from recall_from_location(dut,check_location)))
         
@@ -385,15 +440,27 @@ def simulation_story(dut,capacity):
         assert (check_value == stored_value)
 
 
+    # Now lets recall all the values by values and see
+    # if it returns the correct keys
+
+    for (check_key,check_value) in sorted(stored_keys_values.items()):
+        stored_key = (yield from recall_from_value(dut,check_value))
+        print(f"Checking value  from value {check_value:x} does it have key {check_key:x} vs {stored_key:x}")
+        assert (check_key == stored_key)
+        
     # TODO: write test to make sure an error is returned
 
     random_value = random.getrandbits(WIDTH)
+    worked=False
     try:
         stored_location = yield from store_key_value(dut,key,random_value)
-        raise("The store operation did not give exception, but we expected an error")
+        worked=True
     except Exception as the_error:
-        print("Ok, got an error as expected")
+        print("Ok, got the following error as expected")
+        print(the_error)
 
+    assert(worked==False)
+    
 if __name__ == "__main__":
     if len(sys.argv)>4:
         WIDTH = int(sys.argv[1])

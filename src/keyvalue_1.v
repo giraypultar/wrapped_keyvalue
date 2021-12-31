@@ -2,14 +2,14 @@
 module keyvalue_1(
 	input sys_rst,
 	input [3:0] SEL_i,
-	input ADR_IS_KEY_i,
+	output reg ADR_IS_KEY_i,
 	input DAT_IS_KEY_i,
-	input [7:0] ADR_i,
-	input [7:0] DAT_i,
+	output reg [7:0] ADR_i,
+	output reg [7:0] DAT_i,
 	input WE_i,
 	input STB_i,
 	input CYC_i,
-	input DUP_o,
+	output reg DUP_o,
 	output reg STALL_o,
 	output reg ACK_o,
 	output reg [7:0] DAT_o,
@@ -34,7 +34,7 @@ reg [7:0] __main___storav4 = 8'd0;
 reg [7:0] __main___storav5 = 8'd0;
 reg [7:0] __main___storav6 = 8'd0;
 reg [7:0] __main___storav7 = 8'd0;
-reg [7:0] __main___empty_location = 8'd0;
+reg [7:0] __main___empty_location = 8'd1;
 reg [1:0] convert_state = 2'd3;
 reg [1:0] convert_next_state;
 reg __main___STALL_o_next_value0;
@@ -43,8 +43,16 @@ reg [7:0] __main___empty_location_t_next_value;
 reg __main___empty_location_t_next_value_ce;
 reg __main___ACK_o_f_next_value;
 reg __main___ACK_o_f_next_value_ce;
-reg [7:0] __main___DAT_o_next_value1;
-reg __main___DAT_o_next_value_ce1;
+reg __main___ADR_IS_KEY_i_next_value1;
+reg __main___ADR_IS_KEY_i_next_value_ce1;
+reg [7:0] __main___ADR_i_next_value2;
+reg __main___ADR_i_next_value_ce2;
+reg [7:0] __main___DAT_i_next_value3;
+reg __main___DAT_i_next_value_ce3;
+reg [7:0] __main___DAT_o_next_value4;
+reg __main___DAT_o_next_value_ce4;
+reg __main___DUP_o_next_value5;
+reg __main___DUP_o_next_value_ce5;
 reg [7:0] convert_next_value0;
 reg convert_next_value_ce0;
 reg [7:0] convert_next_value1;
@@ -77,8 +85,16 @@ always @(*) begin
 	__main___empty_location_t_next_value_ce <= 1'd0;
 	__main___ACK_o_f_next_value <= 1'd0;
 	__main___ACK_o_f_next_value_ce <= 1'd0;
-	__main___DAT_o_next_value1 <= 8'd0;
-	__main___DAT_o_next_value_ce1 <= 1'd0;
+	__main___ADR_IS_KEY_i_next_value1 <= 1'd0;
+	__main___ADR_IS_KEY_i_next_value_ce1 <= 1'd0;
+	__main___ADR_i_next_value2 <= 8'd0;
+	__main___ADR_i_next_value_ce2 <= 1'd0;
+	__main___DAT_i_next_value3 <= 8'd0;
+	__main___DAT_i_next_value_ce3 <= 1'd0;
+	__main___DAT_o_next_value4 <= 8'd0;
+	__main___DAT_o_next_value_ce4 <= 1'd0;
+	__main___DUP_o_next_value5 <= 1'd0;
+	__main___DUP_o_next_value_ce5 <= 1'd0;
 	convert_next_value0 <= 8'd0;
 	convert_next_value_ce0 <= 1'd0;
 	convert_next_value1 <= 8'd0;
@@ -97,7 +113,7 @@ always @(*) begin
 			end else begin
 				if ((((STB_i == 1'd1) & (WE_i == 1'd1)) & (ACK_o == 1'd0))) begin
 					convert_next_state <= 2'd2;
-					if ((ADR_i == 8'd0)) begin
+					if (ADR_IS_KEY_i) begin
 						__main___empty_location_t_next_value <= (__main___empty_location + 1'd1);
 						__main___empty_location_t_next_value_ce <= 1'd1;
 					end
@@ -110,74 +126,232 @@ always @(*) begin
 		end
 		1'd1: begin
 			if ((ADR_IS_KEY_i == 1'd1)) begin
+				__main___ADR_IS_KEY_i_next_value1 <= 1'd0;
+				__main___ADR_IS_KEY_i_next_value_ce1 <= 1'd1;
+				__main___ADR_i_next_value2 <= 1'd0;
+				__main___ADR_i_next_value_ce2 <= 1'd1;
+				__main___DAT_i_next_value3 <= 1'd0;
+				__main___DAT_i_next_value_ce3 <= 1'd1;
 				if ((__main___storak1 == ADR_i)) begin
-					__main___DAT_o_next_value1 <= __main___storav1;
-					__main___DAT_o_next_value_ce1 <= 1'd1;
+					__main___DAT_o_next_value4 <= __main___storav1;
+					__main___DAT_o_next_value_ce4 <= 1'd1;
+					__main___ACK_o_f_next_value <= 1'd1;
+					__main___ACK_o_f_next_value_ce <= 1'd1;
+					convert_next_state <= 1'd0;
+				end
+			end
+			if ((DAT_i > 1'd0)) begin
+				__main___ADR_IS_KEY_i_next_value1 <= 1'd0;
+				__main___ADR_IS_KEY_i_next_value_ce1 <= 1'd1;
+				__main___ADR_i_next_value2 <= 1'd0;
+				__main___ADR_i_next_value_ce2 <= 1'd1;
+				__main___DAT_i_next_value3 <= 1'd0;
+				__main___DAT_i_next_value_ce3 <= 1'd1;
+				if ((__main___storav1 == DAT_i)) begin
+					__main___DAT_o_next_value4 <= __main___storak1;
+					__main___DAT_o_next_value_ce4 <= 1'd1;
 					__main___ACK_o_f_next_value <= 1'd1;
 					__main___ACK_o_f_next_value_ce <= 1'd1;
 					convert_next_state <= 1'd0;
 				end
 			end
 			if ((ADR_IS_KEY_i == 1'd1)) begin
+				__main___ADR_IS_KEY_i_next_value1 <= 1'd0;
+				__main___ADR_IS_KEY_i_next_value_ce1 <= 1'd1;
+				__main___ADR_i_next_value2 <= 1'd0;
+				__main___ADR_i_next_value_ce2 <= 1'd1;
+				__main___DAT_i_next_value3 <= 1'd0;
+				__main___DAT_i_next_value_ce3 <= 1'd1;
 				if ((__main___storak2 == ADR_i)) begin
-					__main___DAT_o_next_value1 <= __main___storav2;
-					__main___DAT_o_next_value_ce1 <= 1'd1;
+					__main___DAT_o_next_value4 <= __main___storav2;
+					__main___DAT_o_next_value_ce4 <= 1'd1;
+					__main___ACK_o_f_next_value <= 1'd1;
+					__main___ACK_o_f_next_value_ce <= 1'd1;
+					convert_next_state <= 1'd0;
+				end
+			end
+			if ((DAT_i > 1'd0)) begin
+				__main___ADR_IS_KEY_i_next_value1 <= 1'd0;
+				__main___ADR_IS_KEY_i_next_value_ce1 <= 1'd1;
+				__main___ADR_i_next_value2 <= 1'd0;
+				__main___ADR_i_next_value_ce2 <= 1'd1;
+				__main___DAT_i_next_value3 <= 1'd0;
+				__main___DAT_i_next_value_ce3 <= 1'd1;
+				if ((__main___storav2 == DAT_i)) begin
+					__main___DAT_o_next_value4 <= __main___storak2;
+					__main___DAT_o_next_value_ce4 <= 1'd1;
 					__main___ACK_o_f_next_value <= 1'd1;
 					__main___ACK_o_f_next_value_ce <= 1'd1;
 					convert_next_state <= 1'd0;
 				end
 			end
 			if ((ADR_IS_KEY_i == 1'd1)) begin
+				__main___ADR_IS_KEY_i_next_value1 <= 1'd0;
+				__main___ADR_IS_KEY_i_next_value_ce1 <= 1'd1;
+				__main___ADR_i_next_value2 <= 1'd0;
+				__main___ADR_i_next_value_ce2 <= 1'd1;
+				__main___DAT_i_next_value3 <= 1'd0;
+				__main___DAT_i_next_value_ce3 <= 1'd1;
 				if ((__main___storak3 == ADR_i)) begin
-					__main___DAT_o_next_value1 <= __main___storav3;
-					__main___DAT_o_next_value_ce1 <= 1'd1;
+					__main___DAT_o_next_value4 <= __main___storav3;
+					__main___DAT_o_next_value_ce4 <= 1'd1;
+					__main___ACK_o_f_next_value <= 1'd1;
+					__main___ACK_o_f_next_value_ce <= 1'd1;
+					convert_next_state <= 1'd0;
+				end
+			end
+			if ((DAT_i > 1'd0)) begin
+				__main___ADR_IS_KEY_i_next_value1 <= 1'd0;
+				__main___ADR_IS_KEY_i_next_value_ce1 <= 1'd1;
+				__main___ADR_i_next_value2 <= 1'd0;
+				__main___ADR_i_next_value_ce2 <= 1'd1;
+				__main___DAT_i_next_value3 <= 1'd0;
+				__main___DAT_i_next_value_ce3 <= 1'd1;
+				if ((__main___storav3 == DAT_i)) begin
+					__main___DAT_o_next_value4 <= __main___storak3;
+					__main___DAT_o_next_value_ce4 <= 1'd1;
 					__main___ACK_o_f_next_value <= 1'd1;
 					__main___ACK_o_f_next_value_ce <= 1'd1;
 					convert_next_state <= 1'd0;
 				end
 			end
 			if ((ADR_IS_KEY_i == 1'd1)) begin
+				__main___ADR_IS_KEY_i_next_value1 <= 1'd0;
+				__main___ADR_IS_KEY_i_next_value_ce1 <= 1'd1;
+				__main___ADR_i_next_value2 <= 1'd0;
+				__main___ADR_i_next_value_ce2 <= 1'd1;
+				__main___DAT_i_next_value3 <= 1'd0;
+				__main___DAT_i_next_value_ce3 <= 1'd1;
 				if ((__main___storak4 == ADR_i)) begin
-					__main___DAT_o_next_value1 <= __main___storav4;
-					__main___DAT_o_next_value_ce1 <= 1'd1;
+					__main___DAT_o_next_value4 <= __main___storav4;
+					__main___DAT_o_next_value_ce4 <= 1'd1;
+					__main___ACK_o_f_next_value <= 1'd1;
+					__main___ACK_o_f_next_value_ce <= 1'd1;
+					convert_next_state <= 1'd0;
+				end
+			end
+			if ((DAT_i > 1'd0)) begin
+				__main___ADR_IS_KEY_i_next_value1 <= 1'd0;
+				__main___ADR_IS_KEY_i_next_value_ce1 <= 1'd1;
+				__main___ADR_i_next_value2 <= 1'd0;
+				__main___ADR_i_next_value_ce2 <= 1'd1;
+				__main___DAT_i_next_value3 <= 1'd0;
+				__main___DAT_i_next_value_ce3 <= 1'd1;
+				if ((__main___storav4 == DAT_i)) begin
+					__main___DAT_o_next_value4 <= __main___storak4;
+					__main___DAT_o_next_value_ce4 <= 1'd1;
 					__main___ACK_o_f_next_value <= 1'd1;
 					__main___ACK_o_f_next_value_ce <= 1'd1;
 					convert_next_state <= 1'd0;
 				end
 			end
 			if ((ADR_IS_KEY_i == 1'd1)) begin
+				__main___ADR_IS_KEY_i_next_value1 <= 1'd0;
+				__main___ADR_IS_KEY_i_next_value_ce1 <= 1'd1;
+				__main___ADR_i_next_value2 <= 1'd0;
+				__main___ADR_i_next_value_ce2 <= 1'd1;
+				__main___DAT_i_next_value3 <= 1'd0;
+				__main___DAT_i_next_value_ce3 <= 1'd1;
 				if ((__main___storak5 == ADR_i)) begin
-					__main___DAT_o_next_value1 <= __main___storav5;
-					__main___DAT_o_next_value_ce1 <= 1'd1;
+					__main___DAT_o_next_value4 <= __main___storav5;
+					__main___DAT_o_next_value_ce4 <= 1'd1;
+					__main___ACK_o_f_next_value <= 1'd1;
+					__main___ACK_o_f_next_value_ce <= 1'd1;
+					convert_next_state <= 1'd0;
+				end
+			end
+			if ((DAT_i > 1'd0)) begin
+				__main___ADR_IS_KEY_i_next_value1 <= 1'd0;
+				__main___ADR_IS_KEY_i_next_value_ce1 <= 1'd1;
+				__main___ADR_i_next_value2 <= 1'd0;
+				__main___ADR_i_next_value_ce2 <= 1'd1;
+				__main___DAT_i_next_value3 <= 1'd0;
+				__main___DAT_i_next_value_ce3 <= 1'd1;
+				if ((__main___storav5 == DAT_i)) begin
+					__main___DAT_o_next_value4 <= __main___storak5;
+					__main___DAT_o_next_value_ce4 <= 1'd1;
 					__main___ACK_o_f_next_value <= 1'd1;
 					__main___ACK_o_f_next_value_ce <= 1'd1;
 					convert_next_state <= 1'd0;
 				end
 			end
 			if ((ADR_IS_KEY_i == 1'd1)) begin
+				__main___ADR_IS_KEY_i_next_value1 <= 1'd0;
+				__main___ADR_IS_KEY_i_next_value_ce1 <= 1'd1;
+				__main___ADR_i_next_value2 <= 1'd0;
+				__main___ADR_i_next_value_ce2 <= 1'd1;
+				__main___DAT_i_next_value3 <= 1'd0;
+				__main___DAT_i_next_value_ce3 <= 1'd1;
 				if ((__main___storak6 == ADR_i)) begin
-					__main___DAT_o_next_value1 <= __main___storav6;
-					__main___DAT_o_next_value_ce1 <= 1'd1;
+					__main___DAT_o_next_value4 <= __main___storav6;
+					__main___DAT_o_next_value_ce4 <= 1'd1;
+					__main___ACK_o_f_next_value <= 1'd1;
+					__main___ACK_o_f_next_value_ce <= 1'd1;
+					convert_next_state <= 1'd0;
+				end
+			end
+			if ((DAT_i > 1'd0)) begin
+				__main___ADR_IS_KEY_i_next_value1 <= 1'd0;
+				__main___ADR_IS_KEY_i_next_value_ce1 <= 1'd1;
+				__main___ADR_i_next_value2 <= 1'd0;
+				__main___ADR_i_next_value_ce2 <= 1'd1;
+				__main___DAT_i_next_value3 <= 1'd0;
+				__main___DAT_i_next_value_ce3 <= 1'd1;
+				if ((__main___storav6 == DAT_i)) begin
+					__main___DAT_o_next_value4 <= __main___storak6;
+					__main___DAT_o_next_value_ce4 <= 1'd1;
 					__main___ACK_o_f_next_value <= 1'd1;
 					__main___ACK_o_f_next_value_ce <= 1'd1;
 					convert_next_state <= 1'd0;
 				end
 			end
 			if ((ADR_IS_KEY_i == 1'd1)) begin
+				__main___ADR_IS_KEY_i_next_value1 <= 1'd0;
+				__main___ADR_IS_KEY_i_next_value_ce1 <= 1'd1;
+				__main___ADR_i_next_value2 <= 1'd0;
+				__main___ADR_i_next_value_ce2 <= 1'd1;
+				__main___DAT_i_next_value3 <= 1'd0;
+				__main___DAT_i_next_value_ce3 <= 1'd1;
 				if ((__main___storak7 == ADR_i)) begin
-					__main___DAT_o_next_value1 <= __main___storav7;
-					__main___DAT_o_next_value_ce1 <= 1'd1;
+					__main___DAT_o_next_value4 <= __main___storav7;
+					__main___DAT_o_next_value_ce4 <= 1'd1;
+					__main___ACK_o_f_next_value <= 1'd1;
+					__main___ACK_o_f_next_value_ce <= 1'd1;
+					convert_next_state <= 1'd0;
+				end
+			end
+			if ((DAT_i > 1'd0)) begin
+				__main___ADR_IS_KEY_i_next_value1 <= 1'd0;
+				__main___ADR_IS_KEY_i_next_value_ce1 <= 1'd1;
+				__main___ADR_i_next_value2 <= 1'd0;
+				__main___ADR_i_next_value_ce2 <= 1'd1;
+				__main___DAT_i_next_value3 <= 1'd0;
+				__main___DAT_i_next_value_ce3 <= 1'd1;
+				if ((__main___storav7 == DAT_i)) begin
+					__main___DAT_o_next_value4 <= __main___storak7;
+					__main___DAT_o_next_value_ce4 <= 1'd1;
 					__main___ACK_o_f_next_value <= 1'd1;
 					__main___ACK_o_f_next_value_ce <= 1'd1;
 					convert_next_state <= 1'd0;
 				end
 			end
 			if ((ADR_IS_KEY_i == 1'd0)) begin
-				__main___DAT_o_next_value1 <= convert_comb_array_muxed;
-				__main___DAT_o_next_value_ce1 <= 1'd1;
-				__main___ACK_o_f_next_value <= 1'd1;
-				__main___ACK_o_f_next_value_ce <= 1'd1;
-				convert_next_state <= 1'd0;
+				if ((ADR_i == 1'd0)) begin
+					if ((DAT_i == 1'd0)) begin
+						__main___ACK_o_f_next_value <= 1'd1;
+						__main___ACK_o_f_next_value_ce <= 1'd1;
+						__main___DUP_o_next_value5 <= 1'd1;
+						__main___DUP_o_next_value_ce5 <= 1'd1;
+						__main___DAT_o_next_value4 <= 1'sd1;
+						__main___DAT_o_next_value_ce4 <= 1'd1;
+					end
+				end else begin
+					__main___DAT_o_next_value4 <= convert_comb_array_muxed;
+					__main___DAT_o_next_value_ce4 <= 1'd1;
+					__main___ACK_o_f_next_value <= 1'd1;
+					__main___ACK_o_f_next_value_ce <= 1'd1;
+					convert_next_state <= 1'd0;
+				end
 			end
 			if ((sys_rst == 1'd1)) begin
 				convert_next_state <= 2'd3;
@@ -189,19 +363,19 @@ always @(*) begin
 				convert_next_value_ce0 <= 1'd1;
 				convert_next_value1 <= ADR_i;
 				convert_next_value_ce1 <= 1'd1;
-				__main___DAT_o_next_value1 <= __main___empty_location;
-				__main___DAT_o_next_value_ce1 <= 1'd1;
+				__main___DAT_o_next_value4 <= __main___empty_location;
+				__main___DAT_o_next_value_ce4 <= 1'd1;
 			end else begin
 				if (DAT_IS_KEY_i) begin
 					convert_t_next_value <= DAT_i;
 					convert_t_next_value_ce <= 1'd1;
-					__main___DAT_o_next_value1 <= ADR_i;
-					__main___DAT_o_next_value_ce1 <= 1'd1;
+					__main___DAT_o_next_value4 <= ADR_i;
+					__main___DAT_o_next_value_ce4 <= 1'd1;
 				end else begin
 					convert_f_next_value <= DAT_i;
 					convert_f_next_value_ce <= 1'd1;
-					__main___DAT_o_next_value1 <= ADR_i;
-					__main___DAT_o_next_value_ce1 <= 1'd1;
+					__main___DAT_o_next_value4 <= ADR_i;
+					__main___DAT_o_next_value_ce4 <= 1'd1;
 				end
 			end
 			__main___ACK_o_f_next_value <= 1'd1;
@@ -269,8 +443,20 @@ always @(posedge sys_clk) begin
 	if (__main___ACK_o_f_next_value_ce) begin
 		ACK_o <= __main___ACK_o_f_next_value;
 	end
-	if (__main___DAT_o_next_value_ce1) begin
-		DAT_o <= __main___DAT_o_next_value1;
+	if (__main___ADR_IS_KEY_i_next_value_ce1) begin
+		ADR_IS_KEY_i <= __main___ADR_IS_KEY_i_next_value1;
+	end
+	if (__main___ADR_i_next_value_ce2) begin
+		ADR_i <= __main___ADR_i_next_value2;
+	end
+	if (__main___DAT_i_next_value_ce3) begin
+		DAT_i <= __main___DAT_i_next_value3;
+	end
+	if (__main___DAT_o_next_value_ce4) begin
+		DAT_o <= __main___DAT_o_next_value4;
+	end
+	if (__main___DUP_o_next_value_ce5) begin
+		DUP_o <= __main___DUP_o_next_value5;
 	end
 	if (convert_next_value_ce0) begin
 		convert_sync_array_muxed0 = convert_next_value0;
@@ -389,6 +575,10 @@ always @(posedge sys_clk) begin
 		endcase
 	end
 	if (sys_rst_1) begin
+		ADR_IS_KEY_i <= 1'd0;
+		ADR_i <= 8'd0;
+		DAT_i <= 8'd0;
+		DUP_o <= 1'd0;
 		STALL_o <= 1'd0;
 		ACK_o <= 1'd0;
 		DAT_o <= 8'd0;
@@ -408,7 +598,7 @@ always @(posedge sys_clk) begin
 		__main___storav5 <= 8'd0;
 		__main___storav6 <= 8'd0;
 		__main___storav7 <= 8'd0;
-		__main___empty_location <= 8'd0;
+		__main___empty_location <= 8'd1;
 		convert_state <= 2'd3;
 	end
 end
