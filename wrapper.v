@@ -174,7 +174,7 @@ module wrapped_keyvalue(
 		       .DAT_i     (io_in[18:12]),
 		       .ADR_i     (io_in[26:20]),
 		       .DAT_o     (buf_io_out[34:28]),
-		       .DUP_o     (buf_io_out[35]),
+		       .DUP_o     (buf_io_out[35])
 // not connected		       .LA_o      (buf_la1_data_out),
 		       );
    
