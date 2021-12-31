@@ -42,3 +42,8 @@ set ::env(RUN_CVC) 0
 # make pins wider to solve routing issues
 set ::env(FP_IO_VTHICKNESS_MULT) 4
 set ::env(FP_IO_HTHICKNESS_MULT) 4
+
+set ::env(ROUTING_CORES) 48
+set ::env(RUN_KLAYOUT_XOR) 0
+set ::env(RUN_KLAYOUT_DRC) 0
+

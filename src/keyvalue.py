@@ -82,9 +82,9 @@ class key_value(Module):
         for i in range(1,capacity):
                 fsm.act("READING",
                         If(self.ADR_IS_KEY_i==1,
-                           NextValue(self.ADR_IS_KEY_i,0),
-                           NextValue(self.ADR_i,0),
-                           NextValue(self.DAT_i,0),
+                           # NextValue(self.ADR_IS_KEY_i,0), # NOT FOUND will fail
+                           # NextValue(self.ADR_i,0), # NOT FOUND will fail
+                           # NextValue(self.DAT_i,0),, # NOT FOUND will fail
                            If(self.storak[i]==ADR_i,
                               NextValue(DAT_o,self.storav[i]),
                               NextValue(ACK_o,1),
@@ -94,9 +94,9 @@ class key_value(Module):
                 )
                 fsm.act("READING",
                         If(self.DAT_i>0,
-                           NextValue(self.ADR_IS_KEY_i,0),
-                           NextValue(self.ADR_i,0),
-                           NextValue(self.DAT_i,0),
+                           # NextValue(self.ADR_IS_KEY_i,0), # NOT found will fail
+                           # NextValue(self.ADR_i,0), # NOT found will fail
+                           # NextValue(self.DAT_i,0), , # NOT FOUND will fail
                            If(self.storav[i]==DAT_i,
                               NextValue(DAT_o,self.storak[i]),
                               NextValue(ACK_o,1),
