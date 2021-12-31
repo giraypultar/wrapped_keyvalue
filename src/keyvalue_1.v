@@ -4,62 +4,62 @@ module keyvalue_1(
 	input [3:0] SEL_i,
 	input ADR_IS_KEY_i,
 	input DAT_IS_KEY_i,
-	input [7:0] ADR_i,
-	input [7:0] DAT_i,
+	input [15:0] ADR_i,
+	input [15:0] DAT_i,
 	input WE_i,
 	input STB_i,
 	input CYC_i,
 	output reg DUP_o,
 	output reg STALL_o,
 	output reg ACK_o,
-	output reg [7:0] DAT_o,
-	output [7:0] LA_o,
+	output reg [15:0] DAT_o,
+	output [15:0] LA_o,
 	input sys_clk,
 	input sys_rst_1
 );
 
-reg [7:0] __main___storak0 = 8'd0;
-reg [7:0] __main___storak1 = 8'd0;
-reg [7:0] __main___storak2 = 8'd0;
-reg [7:0] __main___storak3 = 8'd0;
-reg [7:0] __main___storak4 = 8'd0;
-reg [7:0] __main___storak5 = 8'd0;
-reg [7:0] __main___storak6 = 8'd0;
-reg [7:0] __main___storak7 = 8'd0;
-reg [7:0] __main___storav0 = 8'd0;
-reg [7:0] __main___storav1 = 8'd0;
-reg [7:0] __main___storav2 = 8'd0;
-reg [7:0] __main___storav3 = 8'd0;
-reg [7:0] __main___storav4 = 8'd0;
-reg [7:0] __main___storav5 = 8'd0;
-reg [7:0] __main___storav6 = 8'd0;
-reg [7:0] __main___storav7 = 8'd0;
-reg [7:0] __main___empty_location = 8'd1;
+reg [15:0] __main___storak0 = 16'd0;
+reg [15:0] __main___storak1 = 16'd0;
+reg [15:0] __main___storak2 = 16'd0;
+reg [15:0] __main___storak3 = 16'd0;
+reg [15:0] __main___storak4 = 16'd0;
+reg [15:0] __main___storak5 = 16'd0;
+reg [15:0] __main___storak6 = 16'd0;
+reg [15:0] __main___storak7 = 16'd0;
+reg [15:0] __main___storav0 = 16'd0;
+reg [15:0] __main___storav1 = 16'd0;
+reg [15:0] __main___storav2 = 16'd0;
+reg [15:0] __main___storav3 = 16'd0;
+reg [15:0] __main___storav4 = 16'd0;
+reg [15:0] __main___storav5 = 16'd0;
+reg [15:0] __main___storav6 = 16'd0;
+reg [15:0] __main___storav7 = 16'd0;
+reg [15:0] __main___empty_location = 16'd1;
 reg [1:0] convert_state = 2'd3;
 reg [1:0] convert_next_state;
 reg __main___STALL_o_next_value0;
 reg __main___STALL_o_next_value_ce0;
-reg [7:0] __main___empty_location_t_next_value;
+reg [15:0] __main___empty_location_t_next_value;
 reg __main___empty_location_t_next_value_ce;
 reg __main___ACK_o_f_next_value;
 reg __main___ACK_o_f_next_value_ce;
-reg [7:0] __main___DAT_o_next_value1;
+reg [15:0] __main___DAT_o_next_value1;
 reg __main___DAT_o_next_value_ce1;
 reg __main___DUP_o_next_value2;
 reg __main___DUP_o_next_value_ce2;
-reg [7:0] convert_next_value0;
+reg [15:0] convert_next_value0;
 reg convert_next_value_ce0;
-reg [7:0] convert_next_value1;
+reg [15:0] convert_next_value1;
 reg convert_next_value_ce1;
-reg [7:0] convert_t_next_value;
+reg [15:0] convert_t_next_value;
 reg convert_t_next_value_ce;
-reg [7:0] convert_f_next_value;
+reg [15:0] convert_f_next_value;
 reg convert_f_next_value_ce;
-reg [7:0] convert_comb_array_muxed;
-reg [7:0] convert_sync_array_muxed0 = 8'd0;
-reg [7:0] convert_sync_array_muxed1 = 8'd0;
-reg [7:0] convert_sync_array_muxed2 = 8'd0;
-reg [7:0] convert_sync_array_muxed3 = 8'd0;
+reg [15:0] convert_comb_array_muxed;
+reg [15:0] convert_sync_array_muxed0 = 16'd0;
+reg [15:0] convert_sync_array_muxed1 = 16'd0;
+reg [15:0] convert_sync_array_muxed2 = 16'd0;
+reg [15:0] convert_sync_array_muxed3 = 16'd0;
 
 // synthesis translate_off
 reg dummy_s;
@@ -75,21 +75,21 @@ always @(*) begin
 	convert_next_state <= 2'd0;
 	__main___STALL_o_next_value0 <= 1'd0;
 	__main___STALL_o_next_value_ce0 <= 1'd0;
-	__main___empty_location_t_next_value <= 8'd0;
+	__main___empty_location_t_next_value <= 16'd0;
 	__main___empty_location_t_next_value_ce <= 1'd0;
 	__main___ACK_o_f_next_value <= 1'd0;
 	__main___ACK_o_f_next_value_ce <= 1'd0;
-	__main___DAT_o_next_value1 <= 8'd0;
+	__main___DAT_o_next_value1 <= 16'd0;
 	__main___DAT_o_next_value_ce1 <= 1'd0;
 	__main___DUP_o_next_value2 <= 1'd0;
 	__main___DUP_o_next_value_ce2 <= 1'd0;
-	convert_next_value0 <= 8'd0;
+	convert_next_value0 <= 16'd0;
 	convert_next_value_ce0 <= 1'd0;
-	convert_next_value1 <= 8'd0;
+	convert_next_value1 <= 16'd0;
 	convert_next_value_ce1 <= 1'd0;
-	convert_t_next_value <= 8'd0;
+	convert_t_next_value <= 16'd0;
 	convert_t_next_value_ce <= 1'd0;
-	convert_f_next_value <= 8'd0;
+	convert_f_next_value <= 16'd0;
 	convert_f_next_value_ce <= 1'd0;
 	convert_next_state <= convert_state;
 	case (convert_state)
@@ -304,7 +304,7 @@ end
 reg dummy_d_1;
 // synthesis translate_on
 always @(*) begin
-	convert_comb_array_muxed <= 8'd0;
+	convert_comb_array_muxed <= 16'd0;
 	case (ADR_i)
 		1'd0: begin
 			convert_comb_array_muxed <= __main___storav0;
@@ -473,24 +473,24 @@ always @(posedge sys_clk) begin
 		DUP_o <= 1'd0;
 		STALL_o <= 1'd0;
 		ACK_o <= 1'd0;
-		DAT_o <= 8'd0;
-		__main___storak0 <= 8'd0;
-		__main___storak1 <= 8'd0;
-		__main___storak2 <= 8'd0;
-		__main___storak3 <= 8'd0;
-		__main___storak4 <= 8'd0;
-		__main___storak5 <= 8'd0;
-		__main___storak6 <= 8'd0;
-		__main___storak7 <= 8'd0;
-		__main___storav0 <= 8'd0;
-		__main___storav1 <= 8'd0;
-		__main___storav2 <= 8'd0;
-		__main___storav3 <= 8'd0;
-		__main___storav4 <= 8'd0;
-		__main___storav5 <= 8'd0;
-		__main___storav6 <= 8'd0;
-		__main___storav7 <= 8'd0;
-		__main___empty_location <= 8'd1;
+		DAT_o <= 16'd0;
+		__main___storak0 <= 16'd0;
+		__main___storak1 <= 16'd0;
+		__main___storak2 <= 16'd0;
+		__main___storak3 <= 16'd0;
+		__main___storak4 <= 16'd0;
+		__main___storak5 <= 16'd0;
+		__main___storak6 <= 16'd0;
+		__main___storak7 <= 16'd0;
+		__main___storav0 <= 16'd0;
+		__main___storav1 <= 16'd0;
+		__main___storav2 <= 16'd0;
+		__main___storav3 <= 16'd0;
+		__main___storav4 <= 16'd0;
+		__main___storav5 <= 16'd0;
+		__main___storav6 <= 16'd0;
+		__main___storav7 <= 16'd0;
+		__main___empty_location <= 16'd1;
 		convert_state <= 2'd3;
 	end
 end
