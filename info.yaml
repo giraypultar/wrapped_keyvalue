@@ -4,6 +4,8 @@ project:
   picture: docs/keyvalue.png
   author: "Giray Pultar"
   license: Apache-2.0
+  waive_module_test: "no test provided"
+  waive_caravel: "no test provided"
 
 # interfaces
 interfaces: ['wishbone', 'gpio', 'la1']
