@@ -1,1 +1,1 @@
-config.tcl-multiproject
+config.tcl-caravel
